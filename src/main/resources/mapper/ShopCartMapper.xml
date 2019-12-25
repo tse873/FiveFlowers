@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.ShopCartMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.ShopCart" >
+    <id column="shopcart_id" property="shopcartId" jdbcType="INTEGER" />
+    <result column="shopcart_user_id" property="shopcartUserId" jdbcType="INTEGER" />
+    <result column="shopcart_spu_id" property="shopcartSpuId" jdbcType="INTEGER" />
+    <result column="shopcart_shop_number" property="shopcartShopNumber" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from w_shopcart
+    where shopcart_id = #{shopcartId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whjx.pojo.ShopCart" >
+    insert into w_shopcart (shopcart_id, shopcart_user_id, shopcart_spu_id, 
+      shopcart_shop_number)
+    values (#{shopcartId,jdbcType=INTEGER}, #{shopcartUserId,jdbcType=INTEGER}, #{shopcartSpuId,jdbcType=INTEGER}, 
+      #{shopcartShopNumber,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.whjx.pojo.ShopCart" >
+    update w_shopcart
+    set shopcart_user_id = #{shopcartUserId,jdbcType=INTEGER},
+      shopcart_spu_id = #{shopcartSpuId,jdbcType=INTEGER},
+      shopcart_shop_number = #{shopcartShopNumber,jdbcType=INTEGER}
+    where shopcart_id = #{shopcartId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select shopcart_id, shopcart_user_id, shopcart_spu_id, shopcart_shop_number
+    from w_shopcart
+    where shopcart_id = #{shopcartId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select shopcart_id, shopcart_user_id, shopcart_spu_id, shopcart_shop_number
+    from w_shopcart
+  </select>
+</mapper>

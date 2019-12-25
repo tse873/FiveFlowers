@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.Store" >
+    <id column="store_id" property="storeId" jdbcType="INTEGER" />
+    <result column="store_name" property="storeName" jdbcType="VARCHAR" />
+    <result column="store_logo" property="storeLogo" jdbcType="VARCHAR" />
+    <result column="store_createtime" property="storeCreatetime" jdbcType="TIMESTAMP" />
+    <result column="store_address" property="storeAddress" jdbcType="VARCHAR" />
+    <result column="store_phone" property="storePhone" jdbcType="VARCHAR" />
+    <result column="store_introduction" property="storeIntroduction" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from w_store
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whjx.pojo.Store" >
+    insert into w_store (store_id, store_name, store_logo, 
+      store_createtime, store_address, store_phone, 
+      store_introduction)
+    values (#{storeId,jdbcType=INTEGER}, #{storeName,jdbcType=VARCHAR}, #{storeLogo,jdbcType=VARCHAR}, 
+      #{storeCreatetime,jdbcType=TIMESTAMP}, #{storeAddress,jdbcType=VARCHAR}, #{storePhone,jdbcType=VARCHAR}, 
+      #{storeIntroduction,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.whjx.pojo.Store" >
+    update w_store
+    set store_name = #{storeName,jdbcType=VARCHAR},
+      store_logo = #{storeLogo,jdbcType=VARCHAR},
+      store_createtime = #{storeCreatetime,jdbcType=TIMESTAMP},
+      store_address = #{storeAddress,jdbcType=VARCHAR},
+      store_phone = #{storePhone,jdbcType=VARCHAR},
+      store_introduction = #{storeIntroduction,jdbcType=LONGVARCHAR}
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select store_id, store_name, store_logo, store_createtime, store_address, store_phone, 
+    store_introduction
+    from w_store
+    where store_id = #{storeId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select store_id, store_name, store_logo, store_createtime, store_address, store_phone, 
+    store_introduction
+    from w_store
+  </select>
+</mapper>

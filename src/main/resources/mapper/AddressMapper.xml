@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.AddressMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.Address" >
+    <id column="ad_id" property="adId" jdbcType="INTEGER" />
+    <result column="ad_province" property="adProvince" jdbcType="INTEGER" />
+    <result column="ad_city" property="adCity" jdbcType="INTEGER" />
+    <result column="ad_district" property="adDistrict" jdbcType="INTEGER" />
+    <result column="ad_site" property="adSite" jdbcType="VARCHAR" />
+    <result column="ad_name" property="adName" jdbcType="VARCHAR" />
+    <result column="ad_tel" property="adTel" jdbcType="VARCHAR" />
+    <result column="ad_user_id" property="adUserId" jdbcType="INTEGER" />
+    <result column="ad_isdefault" property="adIsdefault" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from w_address
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whjx.pojo.Address" >
+    insert into w_address (ad_id, ad_province, ad_city, 
+      ad_district, ad_site, ad_name, 
+      ad_tel, ad_user_id, ad_isdefault
+      )
+    values (#{adId,jdbcType=INTEGER}, #{adProvince,jdbcType=INTEGER}, #{adCity,jdbcType=INTEGER}, 
+      #{adDistrict,jdbcType=INTEGER}, #{adSite,jdbcType=VARCHAR}, #{adName,jdbcType=VARCHAR}, 
+      #{adTel,jdbcType=VARCHAR}, #{adUserId,jdbcType=INTEGER}, #{adIsdefault,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.whjx.pojo.Address" >
+    update w_address
+    set ad_province = #{adProvince,jdbcType=INTEGER},
+      ad_city = #{adCity,jdbcType=INTEGER},
+      ad_district = #{adDistrict,jdbcType=INTEGER},
+      ad_site = #{adSite,jdbcType=VARCHAR},
+      ad_name = #{adName,jdbcType=VARCHAR},
+      ad_tel = #{adTel,jdbcType=VARCHAR},
+      ad_user_id = #{adUserId,jdbcType=INTEGER},
+      ad_isdefault = #{adIsdefault,jdbcType=INTEGER}
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select ad_id, ad_province, ad_city, ad_district, ad_site, ad_name, ad_tel, ad_user_id, 
+    ad_isdefault
+    from w_address
+    where ad_id = #{adId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select ad_id, ad_province, ad_city, ad_district, ad_site, ad_name, ad_tel, ad_user_id, 
+    ad_isdefault
+    from w_address
+  </select>
+</mapper>
