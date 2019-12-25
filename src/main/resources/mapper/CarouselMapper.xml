@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.CarouselMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.Carousel" >
+    <id column="carousel_id" property="carouselId" jdbcType="TINYINT" />
+    <result column="carousel_url" property="carouselUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Byte" >
+    delete from w_carousel
+    where carousel_id = #{carouselId,jdbcType=TINYINT}
+  </delete>
+  <insert id="insert" parameterType="com.whjx.pojo.Carousel" >
+    insert into w_carousel (carousel_id, carousel_url)
+    values (#{carouselId,jdbcType=TINYINT}, #{carouselUrl,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.whjx.pojo.Carousel" >
+    update w_carousel
+    set carousel_url = #{carouselUrl,jdbcType=VARCHAR}
+    where carousel_id = #{carouselId,jdbcType=TINYINT}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Byte" >
+    select carousel_id, carousel_url
+    from w_carousel
+    where carousel_id = #{carouselId,jdbcType=TINYINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select carousel_id, carousel_url
+    from w_carousel
+  </select>
+</mapper>

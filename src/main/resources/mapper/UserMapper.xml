@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.User" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_openid" property="userOpenid" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="user_avatarurl" property="userAvatarurl" jdbcType="VARCHAR" />
+    <result column="user_truename" property="userTruename" jdbcType="VARCHAR" />
+    <result column="user_sex" property="userSex" jdbcType="INTEGER" />
+    <result column="user_age" property="userAge" jdbcType="INTEGER" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+    <result column="user_birthday" property="userBirthday" jdbcType="DATE" />
+    <result column="user_ctime" property="userCtime" jdbcType="DATE" />
+    <result column="user_creattime" property="userCreattime" jdbcType="DATE" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from w_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whjx.pojo.User" >
+    insert into w_user (user_id, user_openid, user_name, 
+      user_avatarurl, user_truename, user_sex, 
+      user_age, user_tel, user_birthday, 
+      user_ctime, user_creattime)
+    values (#{userId,jdbcType=INTEGER}, #{userOpenid,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{userAvatarurl,jdbcType=VARCHAR}, #{userTruename,jdbcType=VARCHAR}, #{userSex,jdbcType=INTEGER}, 
+      #{userAge,jdbcType=INTEGER}, #{userTel,jdbcType=VARCHAR}, #{userBirthday,jdbcType=DATE}, 
+      #{userCtime,jdbcType=DATE}, #{userCreattime,jdbcType=DATE})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.whjx.pojo.User" >
+    update w_user
+    set user_openid = #{userOpenid,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_avatarurl = #{userAvatarurl,jdbcType=VARCHAR},
+      user_truename = #{userTruename,jdbcType=VARCHAR},
+      user_sex = #{userSex,jdbcType=INTEGER},
+      user_age = #{userAge,jdbcType=INTEGER},
+      user_tel = #{userTel,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=DATE},
+      user_ctime = #{userCtime,jdbcType=DATE},
+      user_creattime = #{userCreattime,jdbcType=DATE}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select user_id, user_openid, user_name, user_avatarurl, user_truename, user_sex, 
+    user_age, user_tel, user_birthday, user_ctime, user_creattime
+    from w_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select user_id, user_openid, user_name, user_avatarurl, user_truename, user_sex, 
+    user_age, user_tel, user_birthday, user_ctime, user_creattime
+    from w_user
+  </select>
+</mapper>

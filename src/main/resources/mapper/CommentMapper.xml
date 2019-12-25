@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.CommentMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.Comment" >
+    <id column="comment_id" property="commentId" jdbcType="INTEGER" />
+    <result column="comment_time" property="commentTime" jdbcType="DATE" />
+    <result column="comment_context" property="commentContext" jdbcType="VARCHAR" />
+    <result column="comment_user" property="commentUser" jdbcType="INTEGER" />
+    <result column="comment_shop" property="commentShop" jdbcType="INTEGER" />
+    <result column="comment_status" property="commentStatus" jdbcType="INTEGER" />
+    <result column="reply_context" property="replyContext" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from w_comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.whjx.pojo.Comment" >
+    insert into w_comment (comment_id, comment_time, comment_context, 
+      comment_user, comment_shop, comment_status, 
+      reply_context)
+    values (#{commentId,jdbcType=INTEGER}, #{commentTime,jdbcType=DATE}, #{commentContext,jdbcType=VARCHAR}, 
+      #{commentUser,jdbcType=INTEGER}, #{commentShop,jdbcType=INTEGER}, #{commentStatus,jdbcType=INTEGER}, 
+      #{replyContext,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.whjx.pojo.Comment" >
+    update w_comment
+    set comment_time = #{commentTime,jdbcType=DATE},
+      comment_context = #{commentContext,jdbcType=VARCHAR},
+      comment_user = #{commentUser,jdbcType=INTEGER},
+      comment_shop = #{commentShop,jdbcType=INTEGER},
+      comment_status = #{commentStatus,jdbcType=INTEGER},
+      reply_context = #{replyContext,jdbcType=VARCHAR}
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select comment_id, comment_time, comment_context, comment_user, comment_shop, comment_status, 
+    reply_context
+    from w_comment
+    where comment_id = #{commentId,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select comment_id, comment_time, comment_context, comment_user, comment_shop, comment_status, 
+    reply_context
+    from w_comment
+  </select>
+</mapper>
