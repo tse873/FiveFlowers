@@ -1,16 +1,11 @@
 package com.whjx.dao;
 
 import com.whjx.pojo.AdminInfo;
-import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.stereotype.Repository;
 
+@Repository("AdminInfoMapper")
 public interface AdminInfoMapper {
-    int deleteByPrimaryKey(Integer adminId);
-
-    int insert(AdminInfo record);
-
-    AdminInfo selectByPrimaryKey(Integer adminId);
-
-    List<AdminInfo> selectAll();
-
-    int updateByPrimaryKey(AdminInfo record);
+    AdminInfo adminLogin (@Param("username") String username, @Param("password") String password);
+    AdminInfo findAdminByName(@Param("username") String username);
 }
