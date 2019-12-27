@@ -32,5 +32,18 @@ spring:
     support-methods-arguments: true
     params: count=countSql
 
+  redis:
+    database: 0
+    host: 60.205.230.246
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-idle: 8
+        max-wait: -1
+        max-active: 8
+        min-idle: 0
+      timeout: 0
+
 mybatis:
   mapper-locations: classpath:mappers/**.xml
