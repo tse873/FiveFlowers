@@ -25,7 +25,9 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
   pagehelper:
+    helper-dialect: mysql
     reasonable: true
     support-methods-arguments: true
     params: count=countSql

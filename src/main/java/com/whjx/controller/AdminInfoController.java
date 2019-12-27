@@ -1,11 +1,9 @@
 package com.whjx.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.whjx.annotation.AdminLoginToken;
 import com.whjx.pojo.AdminInfo;
 import com.whjx.service.impl.AdminInfoServiceImpl;
 import com.whjx.service.impl.TokenService;
-import com.whjx.util.TokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,7 +19,7 @@ public class AdminInfoController {
 
     @CrossOrigin
     @RequestMapping(value = "/login",method = {RequestMethod.POST})
-    public Object login(AdminInfo adminInfo, HttpServletResponse response){
+    public Object login(@RequestBody AdminInfo adminInfo, HttpServletResponse response){
         JSONObject jsonObject = new JSONObject();
         AdminInfo ai = adminInfoServiceImpl.adminLogin(adminInfo);
         if (ai == null || !ai.getAdminName().equals(adminInfo.getAdminName()) || !ai.getAdminPassword().equals(adminInfo.getAdminPassword())) {
@@ -34,16 +32,6 @@ public class AdminInfoController {
             cookie.setPath("/");
             response.addCookie(cookie);
             return jsonObject;
-        }
-    }
-    @AdminLoginToken
-    @RequestMapping(value = "/getMessage" ,method = RequestMethod.POST)
-    public String getMessage() {
-
-        if (TokenUtil.getTokenUserName() != null){
-            return "您已通过验证";
-        }else {
-            return "没有token信息,您未登录";
         }
     }
 }
