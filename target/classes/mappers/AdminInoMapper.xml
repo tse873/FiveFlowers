@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.AdminInfoMapper">
+	<resultMap id="BaseResultMap" type="com.whjx.pojo.AdminInfo" >
+		<id column="admin_id" property="adminId" jdbcType="INTEGER" />
+		<result column="admin_name" property="adminName" jdbcType="VARCHAR" />
+		<result column="admin_password" property="adminPassword" jdbcType="VARCHAR" />
+		<result column="admin_telphone" property="adminTelphone" jdbcType="VARCHAR" />
+		<result column="admin_email" property="adminEmail" jdbcType="VARCHAR" />
+		<result column="admin_creat_time" property="adminCreatTime" jdbcType="DATE" />
+		<result column="admin_staus" property="adminStaus" jdbcType="INTEGER" />
+	</resultMap>
+    <select id="adminLogin" resultType="com.whjx.pojo.AdminInfo" resultMap="BaseResultMap">
+		select admin_id,admin_name,admin_password,admin_telphone,admin_email,admin_creat_time,admin_staus
+		from w_admininfo
+		where admin_name=#{username} and admin_password=#{password}
+	</select>
+	<select id="findAdminByName" resultType="com.whjx.pojo.AdminInfo" resultMap="BaseResultMap">
+        select admin_id,admin_name,admin_password,admin_telphone,admin_email,admin_creat_time,admin_staus
+		from w_admininfo
+      	where admin_name= #{username}
+    </select>
+</mapper>
