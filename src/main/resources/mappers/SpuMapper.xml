@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.SpuMapper">
+    <update id="updateSpu" parameterType="com.whjx.pojo.Spu">
+        update w_spu
+        set spu_title = #{spu.spuTitle,jdbcType=VARCHAR},
+            spu_state = #{spu.spuState,jdbcType=INTEGER},
+            spu_addtime = #{spu.spuAddtime,jdbcType=DATE},
+            spu_sc = #{spu.spuSc,jdbcType=INTEGER},
+            spu_recommend = #{spu.spuRecommend,jdbcType=INTEGER},
+            spu_describe = #{spu.spuDescribe,jdbcType=VARCHAR},
+            spu_img_url = #{spu.spuImgUrl,jdbcType=VARCHAR},
+            spu_specification = #{spu.spuSpecification,jdbcType=VARCHAR}
+    where spu_id = #{spu.spuId}
+    </update>
+    <insert id="addSpu" parameterType="com.whjx.pojo.Spu">
+        insert into w_spu values (#{spu.spuId},#{spu.spuTitle},#{spu.spuState},#{spu.spuAddtime},#{spu.spuSc},#{spu.spuDescribe},#{spu.spuSpecification},#{spu.spuRecommend},#{spu.spuImgUrl})
+    </insert>
+    <select id="findSpuall" resultType="com.whjx.pojo.Spu">
+        select * from w_spu
+    </select>
+</mapper>
