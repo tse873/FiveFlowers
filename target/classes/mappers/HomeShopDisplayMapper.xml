@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.HomeShopDisplayMapper">
+	<resultMap id="BaseResultMap" type="com.whjx.pojo.Spu">
+		<id property="spuId" column="spu_id"/>
+		<result property="spuTitle" column="spu_title"/>
+		<result property="spuState" column="spu_state"/>
+		<result property="spuSc" column="spu_sc"/>
+		<result property="spuDescribe" column="spu_describe"/>
+		<result property="spuSpecification" column="spu_specification"/>
+		<result property="spuRecommend" column="spu_recommend"/>
+		<result property="spuImgUrl" column="spu_img_url"/>
+	</resultMap>
+    <select id="selectAllByPrimaryCategories" resultType="com.whjx.pojo.Spu" resultMap="BaseResultMap">
+		SELECT
+		a.spu_id,
+		a.spu_title,
+		a.spu_state,
+		a.spu_addtime,
+		a.spu_sc,
+		a.spu_describe,
+		a.spu_specification,
+		a.spu_recommend,
+		a.spu_img_url,
+		b.sc_id,
+		b.sc_img,
+		b.sc_name
+		FROM
+		w_spu AS a
+		LEFT JOIN w_second_categories AS b ON a.spu_sc = b.sc_id
+		LEFT JOIN w_primary_categories AS c ON b.sc_pc = c.pc_id
+		<where>
+			<if test="id != null">
+				c.pc_id=#{id}
+			</if>
+			and spu_state=1
+		</where>
+	</select>
+</mapper>
