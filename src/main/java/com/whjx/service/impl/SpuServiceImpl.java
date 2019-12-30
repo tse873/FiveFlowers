@@ -26,7 +26,7 @@ public class SpuServiceImpl implements ISpuService {
         s.setSpuId(spu.getSpuId());
         s.setSpuTitle(spu.getSpuTitle());
         s.setSpuState(spu.getSpuState());
-        s.setSpu_addtime(spu.getSpu_addtime());
+        s.setSpuAddtime(spu.getSpuAddtime());
         s.setSpuSc(spu.getSpuSc());
         s.setSpuDescribe(spu.getSpuDescribe());
         s.setSpuSpecification(spu.getSpuSpecification());
