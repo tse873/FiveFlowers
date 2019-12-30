@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.ISecondMapper" >
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.SecondCategories" >
+    <id column="sc_id" property="scId" jdbcType="INTEGER" />
+    <result column="sc_name" property="scName" jdbcType="VARCHAR" />
+    <result column="sc_pc" property="scPc" jdbcType="INTEGER" />
+    <result column="sc_img" property="scImg" jdbcType="VARCHAR"/>
+
+  </resultMap>
+
+  <select id="selectSecondShow" resultMap="BaseResultMap" resultType="com.whjx.pojo.SecondCategories">
+    select sc.sc_id,
+    sc.sc_name,
+    sc.sc_pc,
+    sc.sc_img,
+    s.spu_id,
+    s.spu_title,
+    s.spu_state,
+    s.spu_sc,
+    s.spu_describe,
+    s.spu_img_url
+    from w_second_categories AS sc left join w_spu AS s on s.spu_sc = sc.sc_id
+    <where>
+       s.spu_state = 1
+    </where>
+  </select>
+
+</mapper>

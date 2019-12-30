@@ -6,7 +6,10 @@ import lombok.Data;
 public class Img {
     private Integer imgId;
     private String imgUrl;
+
     private Integer main;
+
     private Integer imgSort;
     private Integer imgSpuId;
+
 }

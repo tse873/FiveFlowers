@@ -120,6 +120,11 @@
             <artifactId>springloaded</artifactId>
             <version>1.2.6.RELEASE</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+        <dependency>
+            <groupId>com.rabbitmq</groupId>
+            <artifactId>amqp-client</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
