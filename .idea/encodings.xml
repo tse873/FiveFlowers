@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/whjx/controller/SecondController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/whjx/pojo/Sku.java" charset="GBK" />
   </component>
 </project>
