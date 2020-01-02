@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.SolrSpuMapper">
+  <select id="find" resultType="com.whjx.pojo.Spu">
+    SELECT
+	w_spu.id,
+	w_spu.spu_title,
+	w_spu.spu_state,
+	w_spu.spu_addtime,
+	w_spu.spu_sc,
+	w_spu.spu_describe,
+	w_spu.spu_specification,
+	w_spu.spu_recommend,
+	w_spu.spu_img_url,
+	w_spu.spu_price
+	FROM
+	w_spu
+
+  </select>
+</mapper>
