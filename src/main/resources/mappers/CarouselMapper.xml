@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.CarouselMapper">
+	<resultMap id="lala" type="com.whjx.pojo.Carousel">
+		<id property="carouselId" column="carousel_id"/>
+		<result property="carouselUrl" column="carousel_url"/>
+		<result property="carouselIsshow" column="carousel_isshow"/>
+		<result property="carouselCreatetime" column="carousel_createtime"/>
+		<result property="carouselUpdateTime" column="carousel_updateTime"/>
+	</resultMap>
+	<select id="findAll" parameterType="int" resultType="com.whjx.pojo.Carousel" resultMap="lala">
+		SELECT
+		w_carousel.carousel_id,
+		w_carousel.carousel_url,
+		w_carousel.carousel_isshow,
+		w_carousel.carousel_createtime,
+		w_carousel.carousel_updateTime
+		FROM
+		w_carousel
+		WHERE
+		w_carousel.carousel_id = #{id}
+
+	</select>
+</mapper>
