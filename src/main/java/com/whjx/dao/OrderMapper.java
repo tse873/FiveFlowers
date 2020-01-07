@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository("om")
 public interface OrderMapper {
-    List<Order> getOrderAll(Order order);
+    List<Order> getOrderAll(@Param("order") Order order);
     Order getOrderByStatus(@Param("ods") int orderDeliveryStatus);
-
+    int updateOrderByStatus(@Param("order") Order order);
 }

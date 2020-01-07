@@ -21,4 +21,14 @@ public class OrderServiceImpl implements OrderService {
     public Order getOrderByStatus(int orderDeliveryStatus) {
         return om.getOrderByStatus(orderDeliveryStatus);
     }
+
+    @Override
+    public String updateOrderByStatus(Order order) {
+        int i = om.updateOrderByStatus(order);
+        if (i > 0){
+            return "更新成功";
+        }else {
+            return "更新失败";
+        }
+    }
 }

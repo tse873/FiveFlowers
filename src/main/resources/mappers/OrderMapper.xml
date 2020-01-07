@@ -66,7 +66,7 @@
 			<if test="orderFreight != null and orderFreight != ''">
 				and orderFreight = #{orderFreight}
 			</if>
-			<if test="orderId != null and orderId != ''">
+			<if test="orderActualPayment != null and orderActualPayment != ''">
 				and orderActualPayment = #{orderActualPayment}
 			</if>
 		</trim>
@@ -90,4 +90,43 @@
 		WHERE
 		w_order.order_delivery_status = #{ods}
 	</select>
+	<update id="updateOrderByStatus" parameterType="com.whjx.pojo.Order">
+		UPDATE w_order
+		<trim prefix="set" suffixOverrides=",">
+			<if test="order.orderId != null and order.orderId != ''">
+				order_id = #{order.orderId},
+			</if>
+			<if test="order.orderUserId != null and order.orderUserId != ''">
+				order_user_d = #{order.orderUserId},
+			</if>
+			<if test="order.orderAdId != null and order.orderAdId != ''">
+				order_ad_id = #{order.orderAdId},
+			</if>
+			<if test="order.orderPayId != null and order.orderPayId != ''">
+				order_pay_id = #{order.orderPayId},
+			</if>
+			<if test="order.orderNumber != null and order.orderNumber != ''">
+				order_number = #{order.orderNumber},
+			</if>
+			<if test="order.orderFoundTime != null and order.orderFoundTime != ''">
+				order_found_time = #{order.orderFoundTime},
+			</if>
+			<if test="order.orderPaymentTime != null and order.orderPaymentTime != ''">
+				order_payment_time = #{order.orderPaymentTime},
+			</if>
+			<if test="order.orderShipmentsTime != null and order.orderShipmentsTime != ''">
+				order_shipments_time = #{order.orderShipmentsTime},
+			</if>
+			<if test="order.orderReceivingTime != null and order.orderReceivingTime != ''">
+				order_receiving_time = #{order.orderReceivingTime},
+			</if>
+			<if test="order.orderFreight != null and order.orderFreight != ''">
+				order_freight = #{order.orderFreight},
+			</if>
+			<if test="order.orderActualPayment != null and order.orderActualPayment != ''">
+				order_actual_payment = #{order.orderActualPayment},
+			</if>
+		</trim>
+		where order_delivery_status = #{order.orderDeliveryStatus}
+	</update>
 </mapper>

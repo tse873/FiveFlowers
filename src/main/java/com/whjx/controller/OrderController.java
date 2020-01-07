@@ -25,12 +25,11 @@ public class OrderController {
     @CrossOrigin
     @RequestMapping(value = "/bystatus",method = RequestMethod.GET)
     public Object orderByStatus(int orderDeliveryStatus){
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            objectMapper.writeValueAsString(orderDeliveryStatus);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
         return osi.getOrderByStatus(orderDeliveryStatus);
+    }
+    @CrossOrigin
+    @RequestMapping(value = "/updateobs",method = RequestMethod.PUT)
+    public Object updateOrderByStatus(Order order){
+        return osi.updateOrderByStatus(order);
     }
 }
