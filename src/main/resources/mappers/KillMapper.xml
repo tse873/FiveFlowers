@@ -12,14 +12,14 @@
       <result column="can_kill" jdbcType="INTEGER" property="canKill" />
     <result column="kill_isactive" jdbcType="VARCHAR" property="killIsactive" />
     <association property="spu" javaType="com.whjx.pojo.Spu">
-      <id property="spuId" column="spu_id"/>
-      <result property="spuTitle" column="spu_title"/>
-      <result property="spuState" column="spu_state"/>
-      <result property="spuSc" column="spu_sc"/>
-      <result property="spuDescribe" column="spu_describe"/>
-      <result property="spuSpecification" column="spu_specification"/>
-      <result property="spuRecommend" column="spu_recommend"/>
-      <result property="spuImgUrl" column="spu_img_url"/>
+      <id property="id" column="id"/>
+      <result property="spu_title" column="spu_title"/>
+      <result property="spu_state" column="spu_state"/>
+      <result property="spu_sc" column="spu_sc"/>
+      <result property="spu_describe" column="spu_describe"/>
+      <result property="spu_specification" column="spu_specification"/>
+      <result property="spu_recommend" column="spu_recommend"/>
+      <result property="spu_img_url" column="spu_img_url"/>
 
       <collection  property="imgs" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Img">
         <id property="imgId" column="img_id"/>
@@ -32,43 +32,51 @@
 
   </resultMap>
 <!--  获取商品列表查询-->
-  <select id="selectAll" resultMap="BaseResultMap" resultType="com.whjx.pojo.Kill">
- SELECT
-      a.kill_id,
-      a.kill_spuid,
-      a.kill_price,
-      a.kill_isactive,
-      a.can_kill,
-      b.spu_id,
-      b.spu_title,
-      b.spu_state,
-      b.spu_describe,
-      b.spu_img_url
-    FROM w_kill AS a LEFT JOIN w_spu AS b ON b.spu_id = a.kill_spuid
-    WHERE kill_id = 1;
-  </select>
+      <select id="selectAll" resultMap="BaseResultMap" resultType="com.whjx.pojo.Kill">
+     SELECT
+          a.kill_id,
+          a.kill_spuid,
+          a.kill_price,
+          a.kill_isactive,
+          a.can_kill,
+          b.id,
+          b.spu_title,
+          b.spu_state,
+          b.spu_describe,
+          b.spu_img_url
+        FROM w_kill AS a LEFT JOIN w_spu AS b ON b.id = a.kill_spuid
+        WHERE kill_id = 1;
+      </select>
 <!--  获取商品详细信息的查询-->
-  <select id="selectById" resultType="com.whjx.pojo.Kill" resultMap="BaseResultMap">
-    SELECT
-      a.kill_id,
-      a.kill_count,
-      a.kill_start,
-      a.kill_end,
-      a.kill_spuid,
-      a.kill_price,
-      a.kill_isactive,
-      a.can_kill,
-      b.spu_id,
-      b.spu_title,
-      b.spu_state,
-      b.spu_sc,
-      b.spu_describe,
-      img.img_url,
-      img.img_sort,
-      img.img_main,
-      img.img_spu_id
-    FROM (w_kill AS a LEFT JOIN w_spu AS b ON b.spu_id = a.kill_spuid) LEFT JOIN w_img AS img ON b.spu_id = img.img_spu_id
-    WHERE a.kill_isactive = 1 AND a.kill_spuid = #{killId}
-  </select>
+      <select id="selectById" resultType="com.whjx.pojo.Kill" resultMap="BaseResultMap">
+        SELECT
+          a.kill_id,
+          a.kill_count,
+          a.kill_start,
+          a.kill_end,
+          a.kill_spuid,
+          a.kill_price,
+          a.kill_isactive,
+          a.can_kill,
+          b.id,
+          b.spu_title,
+          b.spu_state,
+          b.spu_sc,
+          b.spu_describe,
+          img.img_url,
+          img.img_sort,
+          img.img_main,
+          img.img_spu_id
+        FROM (w_kill AS a LEFT JOIN w_spu AS b ON b.id = a.kill_spuid) LEFT JOIN w_img AS img ON b.id = img.img_spu_id
+        WHERE a.kill_isactive = 1 AND a.kill_spuid = #{killId} AND a.kill_count > 0
+     </select>
+    <select id="selectByUserId" resultType="java.lang.Integer">
+        SELECT
+        COUNT(1)
+    FROM
+        w_user
+    WHERE
+        user_id = #{userId}
+    </select>
 
 </mapper>

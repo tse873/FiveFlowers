@@ -16,4 +16,7 @@ public class KillSuccess {
     private Integer killId;
     private Integer killStatus;
     private Date creatTime;
+    private UserInfo userInfo;
+    private Spu spu;
+    private Integer DiffTime;
 }
