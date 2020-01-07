@@ -14,7 +14,7 @@
     sc.sc_name,
     sc.sc_pc,
     sc.sc_img,
-    s.spu_id,
+    s.id,
     s.spu_title,
     s.spu_state,
     s.spu_sc,

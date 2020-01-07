@@ -1,7 +1,6 @@
 package com.whjx.pojo;
 
 import lombok.Data;
-
 import java.math.BigDecimal;
 
 @Data
@@ -11,5 +10,6 @@ public class Sku {
     private String skuTitle;
     private BigDecimal skuPrice;
     private String skuDescribe;
-    private Integer skuInventoryId;
+    private Integer skuInventory;
+    private String skuImg;
 }

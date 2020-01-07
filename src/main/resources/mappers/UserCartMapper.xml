@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.UserCartMapper">
+	<resultMap id="BaseResultMap" type="com.whjx.pojo.ShopCart">
+		<result property="shopcartUserId" column="shopcart_user_id"/>
+		<result property="shopcartSkuId" column="shopcart_sku_id"/>
+		<result property="shopcartNumber" column="shopcart_number"/>
+		<collection property="skuList" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Sku">
+			<id property="skuId" column="sku_id"/>
+			<result property="skuSpuId" column="sku_spuid"/>
+			<result property="skuTitle" column="sku_title"/>
+			<result property="skuPrice" column="sku_price"/>
+			<result property="skuDescribe" column="sku_describe"/>
+			<result property="skuInventory" column="sku_inventory"/>
+			<result property="skuImg" column="sku_img"/>
+		</collection>
+	</resultMap>
+	<resultMap id="BaseResultMap1" type="com.whjx.pojo.Sku">
+		<id property="skuId" column="sku_id"/>
+		<result property="skuSpuId" column="sku_spuid"/>
+		<result property="skuTitle" column="sku_title"/>
+		<result property="skuPrice" column="sku_price"/>
+		<result property="skuDescribe" column="sku_describe"/>
+		<result property="skuInventory" column="sku_inventory"/>
+		<result property="skuImg" column="sku_img"/>
+	</resultMap>
+    <select id="selectAll" resultType="com.whjx.pojo.ShopCart" resultMap="BaseResultMap" parameterType="int">
+		SELECT
+		a.shopcart_user_id,
+		a.shopcart_sku_id,
+		a.shopcart_number,
+		c.sku_spuid,
+		c.sku_title,
+		c.sku_price,
+		c.sku_inventory,
+		c.sku_img,
+		d.spu_title
+		FROM
+		w_shopcart AS a
+		LEFT JOIN w_user AS b ON a.shopcart_user_id = b.user_id
+		LEFT JOIN w_sku AS c ON a.shopcart_sku_id = c.sku_id
+		LEFT JOIN w_spu AS d ON d.id = c.sku_spuid
+		WHERE a.shopcart_user_id = #{id}
+	</select>
+	<insert id="addToCart" parameterType="com.whjx.pojo.ShopCart">
+		insert into w_shopcart values (#{sc.shopcartUserId},#{sc.shopcartSkuId},#{sc.shopcartNumber})
+	</insert>
+	<update id="updateCart">
+		update w_shopcart set shopcart_number = #{num} where shopcart_user_id = #{userId} and shopcart_sku_id = #{skuId}
+	</update>
+	<delete id="deleteShop">
+		delete from w_shopcart where shopcart_user_id = #{userid} and shopcart_sku_id = #{skuid}
+	</delete>
+	<select id="findSkuById" resultType="com.whjx.pojo.Sku" parameterType="int" resultMap="BaseResultMap1">
+		select * from w_sku where sku_id = #{kid}
+	</select>
+</mapper>
