@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.whjx.dao.SolrSpuMapper">
-  <select id="find" resultType="com.whjx.pojo.Spu">
+	<resultMap id="solrResultMap" type="com.whjx.pojo.Spu">
+		<id column="id" property="id"/>
+		<result column="spu_title" property="spuTitle"/>
+		<result column="spu_state" property="spuState"/>
+		<result column="spu_addtime" property="spuAddtime"/>
+		<result column="spu_sc" property="spuSc"/>
+		<result column="spu_describe" property="spuDescribe"/>
+		<result column="spu_specification" property="spuSpecification"/>
+		<result column="spu_recommend" property="spuRecommend"/>
+		<result column="spu_img_url" property="spuImgUrl"/>
+		<result column="spu_price" property="spuPrice"/>
+	</resultMap>
+	<select id="find" resultType="com.whjx.pojo.Spu" resultMap="solrResultMap">
     SELECT
 	w_spu.id,
 	w_spu.spu_title,
@@ -15,6 +27,5 @@
 	w_spu.spu_price
 	FROM
 	w_spu
-
   </select>
 </mapper>
