@@ -13,13 +13,13 @@
     <result column="kill_isactive" jdbcType="VARCHAR" property="killIsactive" />
     <association property="spu" javaType="com.whjx.pojo.Spu">
       <id property="id" column="id"/>
-      <result property="spu_title" column="spu_title"/>
-      <result property="spu_state" column="spu_state"/>
-      <result property="spu_sc" column="spu_sc"/>
-      <result property="spu_describe" column="spu_describe"/>
-      <result property="spu_specification" column="spu_specification"/>
-      <result property="spu_recommend" column="spu_recommend"/>
-      <result property="spu_img_url" column="spu_img_url"/>
+      <result property="spuTitle" column="spu_title"/>
+      <result property="spuState" column="spu_state"/>
+      <result property="spuSc" column="spu_sc"/>
+      <result property="spuDescribe" column="spu_describe"/>
+      <result property="spuSpecification" column="spu_specification"/>
+      <result property="spuRecommend" column="spu_recommend"/>
+      <result property="spuImgUrl" column="spu_img_url"/>
 
       <collection  property="imgs" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Img">
         <id property="imgId" column="img_id"/>

@@ -16,22 +16,22 @@ public class Spu {
     @Field
     private Integer id;
     @Field("spu_title")
-    private String spu_title;
+    private String spuTitle;
     @Field("spu_state")
-    private Integer spu_state;
+    private Integer spuState;
     @Field("spu_addtime")
-    private Date spu_addtime;
+    private Date spuAddtime;
     @Field("spu_sc")
-    private Integer spu_sc;
+    private Integer spuSc;
     @Field("spu_describe")
-    private String spu_describe;
+    private String spuDescribe;
     @Field("spu_specification")
-    private String spu_specification;
+    private String spuSpecification;
     @Field("spu_recommend")
-    private Integer spu_recommend;
+    private Integer spuRecommend;
     @Field("spu_img_url")
-    private String spu_img_url;
+    private String spuImgUrl;
     @Field("spu_price")
-    private BigDecimal spu_price;
+    private BigDecimal spuPrice;
     private List<Img> imgs;
 }

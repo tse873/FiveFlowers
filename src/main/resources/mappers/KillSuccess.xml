@@ -17,7 +17,7 @@
         </association>
         <association property="spu" javaType="com.whjx.pojo.Spu">
             <id property="id" column="id"/>
-            <result property="spu_title" column="spu_title"/>
+            <result property="spuTitle" column="spu_title"/>
         </association>
     </resultMap>
     <!--  获取秒杀成功后信息-->
