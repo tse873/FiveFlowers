@@ -6,17 +6,22 @@ import java.math.BigDecimal;
 import java.util.Date;
 @Data
 public class Order {
-    private Integer orderId;//订单id
-    private Integer orderUserId;//用户id(关联用户表的用户id)
-    private Integer orderAdId;//收货地址id(关联用户地址表的地址id)
-    private Integer orderPayId;//支付id(关联支付表的支付id)
-    private String orderNumber;//订单编号
-    private Integer orderDeliveryStatus;//订单状态(0：待付款 1：待发货 2：待收货；3：已完成；4：已关闭；5：已回收；6：未回收)
-    private Date orderFoundTime;//创建时间
-    private Date orderPaymentTime;//付款时间
-    private Date orderShipmentsTime;//发货时间
-    private Date orderReceivingTime;//收货时间
-    private BigDecimal orderFreight;//运费
-    private BigDecimal orderActualPayment;//实付款
-
+    private String orderId;//订单id
+    private BigDecimal payment;//实付金额，精确到两位小数
+    private Integer paymentType;//支付类型，1.在线支付，2.货到付款
+    private BigDecimal postFee;//邮费，精确到两位
+    private Integer status;//状态，0.未付款，1.已付款，2.未发货，3.已发货，4.交易成功，5.交易关闭				0	0
+    private Date createTime;//订单创建时间
+    private Date updateTime;//订单更新时间
+    private Date paymentTime;//付款时间
+    private Date consignTime;//发货时间
+    private Date endTime;//交易完成时间
+    private Date closeTime;//交易关闭时间
+    private String shippingName;//物流名称
+    private String shippingCode;//物流单号
+    private Integer userId;//用户id
+    private String buyerMessage;//买家留言
+    private String buyerNick;//买家昵称
+    private Integer buyerRate;//买家是否已评论 0,未评论/1，已评论
+    private Integer DiffTime;
 }
