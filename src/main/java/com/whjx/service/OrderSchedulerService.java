@@ -17,7 +17,7 @@ public class OrderSchedulerService {
     @Autowired
     private Environment env;
     @Scheduled(cron = "0 0/30 * * * ?")
-    public void schedulerExpireOrders(){
+    public void schedulerOrders(){
         List<Order> list = orderMapper.orderAll();
         if (list!=null && !list.isEmpty()){
             list.stream().forEach(i -> {
