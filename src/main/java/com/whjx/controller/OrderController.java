@@ -24,8 +24,8 @@ public class OrderController {
     }
     @CrossOrigin
     @RequestMapping(value = "/bystatus",method = RequestMethod.GET)
-    public Object orderByStatus(int orderDeliveryStatus){
-        return osi.getOrderByStatus(orderDeliveryStatus);
+    public Object orderByStatus(int status){
+        return osi.getOrderByStatus(status);
     }
     @CrossOrigin
     @RequestMapping(value = "/updateobs",method = RequestMethod.PUT)

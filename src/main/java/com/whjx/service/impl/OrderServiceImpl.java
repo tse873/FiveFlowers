@@ -18,8 +18,8 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public Order getOrderByStatus(int orderDeliveryStatus) {
-        return om.getOrderByStatus(orderDeliveryStatus);
+    public Order getOrderByStatus(int status) {
+        return om.getOrderByStatus(status);
     }
 
     @Override
