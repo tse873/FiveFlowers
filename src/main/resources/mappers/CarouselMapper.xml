@@ -9,7 +9,7 @@
 		<result property="carouselCreatetime" column="carousel_createtime"/>
 		<result property="carouselUpdateTime" column="carousel_updateTime"/>
 	</resultMap>
-	<select id="findAll" parameterType="int" resultType="com.whjx.pojo.Carousel" resultMap="lala">
+	<select id="findAlls" resultType="com.whjx.pojo.Carousel" resultMap="lala">
 		SELECT
 		w_carousel.carousel_id,
 		w_carousel.carousel_url,
@@ -18,8 +18,6 @@
 		w_carousel.carousel_updateTime
 		FROM
 		w_carousel
-		WHERE
-		w_carousel.carousel_id = #{id}
-
+		where w_carousel.carousel_isshow = 1
 	</select>
 </mapper>

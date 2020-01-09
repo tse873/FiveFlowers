@@ -6,13 +6,17 @@ import com.whjx.service.CarouselService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service("cs")
 public class CarouselServiceImpl implements CarouselService {
     @Autowired
     private CarouselMapper cm;
     @Override
-    public Carousel findAll(int id) {
-        return cm.findAll(id);
+    public List<Carousel> findAlls(Carousel carousel) {
+        return cm.findAlls(carousel);
     }
+
+
 }

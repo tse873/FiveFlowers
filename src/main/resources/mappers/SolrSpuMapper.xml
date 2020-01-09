@@ -12,20 +12,39 @@
 		<result column="spu_recommend" property="spuRecommend"/>
 		<result column="spu_img_url" property="spuImgUrl"/>
 		<result column="spu_price" property="spuPrice"/>
+		<association property="sku" javaType="com.whjx.pojo.Sku">
+			<id column="id" property="id"/>
+			<result column="sku_spuid" property="skuSpuid"/>
+			<result column="sku_title" property="skuTitle"/>
+			<result column="sku_price" property="skuPrice"/>
+			<result column="sku_describe" property="skuDescribe"/>
+			<result column="sku_inventory" property="skuInventory"/>
+			<result column="sku_img" property="skuImg"/>
+		</association>
 	</resultMap>
-	<select id="find" resultType="com.whjx.pojo.Spu" resultMap="solrResultMap">
-    SELECT
-	w_spu.id,
-	w_spu.spu_title,
-	w_spu.spu_state,
-	w_spu.spu_addtime,
-	w_spu.spu_sc,
-	w_spu.spu_describe,
-	w_spu.spu_specification,
-	w_spu.spu_recommend,
-	w_spu.spu_img_url,
-	w_spu.spu_price
-	FROM
-	w_spu
+	<select id="find" resultMap="solrResultMap">
+    	SELECT
+		w_spu.id,
+		w_spu.spu_title,
+		w_spu.spu_state,
+		w_spu.spu_addtime,
+		w_spu.spu_sc,
+		w_spu.spu_describe,
+		w_spu.spu_specification,
+		w_spu.spu_recommend,
+		w_spu.spu_img_url,
+		w_spu.spu_price,
+		w_sku.id,
+		w_sku.sku_spuid,
+		w_sku.sku_title,
+		w_sku.sku_price,
+		w_sku.sku_describe,
+		w_sku.sku_inventory,
+		w_sku.sku_img
+		FROM
+		w_spu ,
+		w_sku
+		WHERE
+		w_spu.id = w_sku.sku_spuid
   </select>
 </mapper>

@@ -14,7 +14,7 @@ import java.util.List;
 public class SolrSpuServiceImpl implements SolrSpuService {
     @Autowired
     private SolrSpuMapper ssm;
-    @Autowired
+    /*@Autowired
     private SolrTemplate solrTemplate;
 
     @Override
@@ -23,5 +23,5 @@ public class SolrSpuServiceImpl implements SolrSpuService {
         solrTemplate.saveBeans("collection1",spuList);
         solrTemplate.commit("collection1");
         return spuList;
-    }
+    }*/
 }
