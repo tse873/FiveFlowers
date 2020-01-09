@@ -2,10 +2,14 @@ package com.whjx.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.whjx.pojo.Order;
 import com.whjx.service.impl.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class OrderController {
@@ -13,14 +17,17 @@ public class OrderController {
     private OrderServiceImpl osi;
     @CrossOrigin
     @RequestMapping(value = "/orderall",method = RequestMethod.GET)
-    public Object orderAll(Order order){
+    public PageInfo<Order> orderAll(int page,int pageSize,Order order){
+        PageHelper.startPage(page + 1,pageSize);
+        List<Order> orderAll = osi.getOrderAll(order);
+        PageInfo pageInfo = new PageInfo(orderAll);
         ObjectMapper objectMapper = new ObjectMapper();
         try {
             objectMapper.writeValueAsString(order);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
-        return osi.getOrderAll(order);
+        return pageInfo;
     }
     @CrossOrigin
     @RequestMapping(value = "/bystatus",method = RequestMethod.GET)

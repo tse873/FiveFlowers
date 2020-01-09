@@ -34,4 +34,5 @@ public class Spu {
     @Field("spu_price")
     private BigDecimal spuPrice;
     private List<Img> imgs;
+    private Sku sku;
 }

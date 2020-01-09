@@ -1,7 +1,0 @@
-com\whjx\util\util.class
-com\whjx\DemoApplication.class
-com\whjx\dao\dao.class
-com\whjx\service\service.class
-com\whjx\pojo\pojo.class
-com\whjx\service\impl\impl.class
-com\whjx\controller\controller.class
