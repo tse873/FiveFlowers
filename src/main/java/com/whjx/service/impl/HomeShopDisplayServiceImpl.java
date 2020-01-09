@@ -19,4 +19,9 @@ public class HomeShopDisplayServiceImpl implements HomeShopDisplayService {
     public List<Spu> selectAllByPrimaryCategories(int pcid) {
         return homeShopDisplayMapper.selectAllByPrimaryCategories(pcid);
     }
+
+    @Override
+    public List<Spu> selectAllRecommend() {
+        return homeShopDisplayMapper.selectAllRecommend();
+    }
 }

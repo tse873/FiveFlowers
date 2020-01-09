@@ -22,11 +22,20 @@ public class HomeShopDisplayController {
 
     @CrossOrigin
     @RequestMapping(value = "/homeshop",method = {RequestMethod.GET,RequestMethod.POST})
-    public PageInfo<Spu> sselectAllByPrimaryCategories(int pcid,int pageSize, int page){
+    public PageInfo<Spu> selectAllByPrimaryCategories(int pcid,int pageSize, int page){
         PageHelper.startPage(page + 1, pageSize);
         List<Spu> homeshop = homeShopDisplayServiceImpl.selectAllByPrimaryCategories(pcid);
         PageInfo pageInfos = new PageInfo(homeshop);
         redisTemplate.opsForValue().set("pageInfos",pageInfos);
+        return pageInfos;
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/goodGoods",method = {RequestMethod.GET,RequestMethod.POST})
+    public PageInfo<Spu> selectAllRecommend(int pageSize, int page){
+        PageHelper.startPage(page + 1, pageSize);
+        List<Spu> spus = homeShopDisplayServiceImpl.selectAllRecommend();
+        PageInfo pageInfos = new PageInfo(spus);
         return pageInfos;
     }
 }

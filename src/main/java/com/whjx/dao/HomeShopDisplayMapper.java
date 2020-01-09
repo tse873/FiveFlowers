@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface HomeShopDisplayMapper {
     List<Spu> selectAllByPrimaryCategories(@Param("id") int pcid);
+    List<Spu> selectAllRecommend();
 }
