@@ -20,6 +20,7 @@ public class UserCartServiceImpl implements UserCartService {
 
     @Override
     public String addToCart(ShopCart shopcart) {
+        String res = "";
         List<ShopCart> shopcarts = this.selectAll(shopcart.getShopcartUserId());
         if(shopcarts.size() != 0) {
             for (ShopCart shopCart : shopcarts) {
@@ -28,24 +29,24 @@ public class UserCartServiceImpl implements UserCartService {
                     kucun = skuList.getSkuInventory();
                 }
                 if(kucun < (shopcart.getShopcartNumber()+1)) {
-                    return "数量超出范围了";
+                    res = "数量超出范围了";
                 } else if(shopcart.getShopcartNumber()+shopCart.getShopcartNumber() > kucun ){
-                        return "商品加购件数(含已加购件数)已超过库存";
+                        res = "商品加购件数(含已加购件数)已超过库存";
                 } else {
                     shopcart.setShopcartNumber(shopcart.getShopcartNumber() + shopCart.getShopcartNumber());
                     this.deleteShop(shopCart.getShopcartUserId(), shopCart.getShopcartSkuId());
-                    return String.valueOf(userCartMapper.addToCart(shopcart));
+                    res = String.valueOf(userCartMapper.addToCart(shopcart));
                 }
             }
         } else {
             Sku sku = userCartMapper.findSkuById(shopcart.getShopcartSkuId());
             if(sku.getSkuInventory() < (shopcart.getShopcartNumber() + 1)){
-                return "数量超出范围了";
+                res = "数量超出范围了";
             }else{
-                return String.valueOf(userCartMapper.addToCart(shopcart));
+                res = String.valueOf(userCartMapper.addToCart(shopcart));
             }
         }
-        return "异常";
+        return res;
     }
 
     @Override

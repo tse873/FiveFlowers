@@ -5,4 +5,7 @@
     <insert id="saveInfo" parameterType="com.whjx.pojo.UserInfo">
         insert into w_user(openid,nickName,avatar_url,gender,country,province,city,language) values(#{ui.openid},#{ui.nickName},#{ui.avatarUrl},#{ui.gender},#{ui.country},#{ui.province},#{ui.city},#{ui.language})
     </insert>
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.whjx.pojo.UserInfo">
+        select * from w_user where openid = #{openid}
+    </select>
 </mapper>
