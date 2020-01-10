@@ -48,7 +48,7 @@ public class UserCartController {
 
     @CrossOrigin
     @RequestMapping(value = "/updateNum",method = {RequestMethod.POST,RequestMethod.GET})
-    public String updateCart(int userId,ShopCart sc){
+    public String updateCart(@RequestParam int userId,ShopCart sc){
         String s = "";
         try {
             String res = userCartServiceImpl.updateCart(userId,sc.getShopcartSkuId(),sc.getShopcartNumber());
@@ -62,7 +62,7 @@ public class UserCartController {
 
     @CrossOrigin
     @RequestMapping(value = "/delete",method = {RequestMethod.POST,RequestMethod.GET})
-    public String deleteShop(int userId,int skuId){
+    public String deleteShop(@RequestParam int userId,int skuId){
         String s = "";
         int count = userCartServiceImpl.deleteShop(userId, skuId);
         if(count > 0){

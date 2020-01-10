@@ -37,7 +37,7 @@ public class RabbitReceiverService {
             log.info("秒杀成功异步接收消息--开始",info);
 
             //TODO:真正的发送邮件
-            String[] userEmail = {info.getUserInfo().getUserEmail()};
+            String[] userEmail = {info.getUserInfo().getEmail()};
             for (String a:userEmail) {
                 System.out.println(a);
             }

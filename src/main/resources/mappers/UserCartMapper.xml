@@ -7,8 +7,8 @@
 		<result property="shopcartSkuId" column="shopcart_sku_id"/>
 		<result property="shopcartNumber" column="shopcart_number"/>
 		<collection property="skuList" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Sku">
-			<id property="skuId" column="sku_id"/>
-			<result property="skuSpuId" column="sku_spuid"/>
+			<id property="id" column="id"/>
+			<result property="skuSpuId" column="sku_spu_id"/>
 			<result property="skuTitle" column="sku_title"/>
 			<result property="skuPrice" column="sku_price"/>
 			<result property="skuDescribe" column="sku_describe"/>
@@ -17,8 +17,8 @@
 		</collection>
 	</resultMap>
 	<resultMap id="BaseResultMap1" type="com.whjx.pojo.Sku">
-		<id property="skuId" column="sku_id"/>
-		<result property="skuSpuId" column="sku_spuid"/>
+		<id property="id" column="id"/>
+		<result property="skuSpuId" column="sku_spu_id"/>
 		<result property="skuTitle" column="sku_title"/>
 		<result property="skuPrice" column="sku_price"/>
 		<result property="skuDescribe" column="sku_describe"/>
@@ -30,7 +30,7 @@
 		a.shopcart_user_id,
 		a.shopcart_sku_id,
 		a.shopcart_number,
-		c.sku_spuid,
+		c.sku_spu_id,
 		c.sku_title,
 		c.sku_price,
 		c.sku_inventory,
@@ -39,8 +39,8 @@
 		FROM
 		w_shopcart AS a
 		LEFT JOIN w_user AS b ON a.shopcart_user_id = b.user_id
-		LEFT JOIN w_sku AS c ON a.shopcart_sku_id = c.sku_id
-		LEFT JOIN w_spu AS d ON d.id = c.sku_spuid
+		LEFT JOIN w_sku AS c ON a.shopcart_sku_id = c.id
+		LEFT JOIN w_spu AS d ON d.id = c.sku_spu_id
 		WHERE a.shopcart_user_id = #{id}
 	</select>
 	<insert id="addToCart" parameterType="com.whjx.pojo.ShopCart">

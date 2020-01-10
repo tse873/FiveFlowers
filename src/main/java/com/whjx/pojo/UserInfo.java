@@ -1,14 +1,15 @@
 package com.whjx.pojo;
 import lombok.Data;
+
 @Data
 public class UserInfo {
+    private String openid;
+    private String nickName;
     private String avatarUrl;
-    private String city;
-    private String country;
     private Integer gender;
+    private String country;
+    private String province;
+    private String city;
     private String language;
-    private String userName;
-    private String provice;
-    private String userEmail;
-    private String userTel;
+    private String email;
 }

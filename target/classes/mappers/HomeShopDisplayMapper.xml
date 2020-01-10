@@ -14,7 +14,7 @@
 	</resultMap>
     <select id="selectAllByPrimaryCategories" resultType="com.whjx.pojo.Spu" resultMap="BaseResultMap">
 		SELECT
-		a.spu_id,
+		a.id,
 		a.spu_title,
 		a.spu_state,
 		a.spu_addtime,
@@ -36,5 +36,18 @@
 			</if>
 			and spu_state=1
 		</where>
+	</select>
+	<select id="selectAllRecommend" resultType="com.whjx.pojo.Spu" resultMap="BaseResultMap">
+		select
+		id,
+		spu_title,
+		spu_state,
+		spu_addtime,
+		spu_sc,
+		spu_describe,
+		spu_specification,
+		spu_recommend,
+		spu_img_url
+		FROM w_spu WHERE spu_recommend = 1
 	</select>
 </mapper>

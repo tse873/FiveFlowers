@@ -13,8 +13,8 @@ public class Sku {
     @Id
     @Field
     private Integer id;
-    @Field("sku_spuid")
-    private Integer skuSpuid;
+    @Field("sku_spu_id")
+    private Integer skuSpuId;
     @Field("sku_title")
     private String skuTitle;
     @Field("sku_price")
