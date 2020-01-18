@@ -6,5 +6,5 @@ import com.whjx.pojo.Spu;
 import java.util.List;
 
 public interface SolrSpuService {
-    //List<Spu> commitAll();
+    List<Spu> commitAll(Spu spu);
 }

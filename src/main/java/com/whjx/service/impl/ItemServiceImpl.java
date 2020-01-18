@@ -1,7 +1,6 @@
 package com.whjx.service.impl;
 
 import com.whjx.dao.KillMapper;
-import com.whjx.pojo.Img;
 import com.whjx.pojo.Kill;
 import com.whjx.service.IItemService;
 import org.slf4j.Logger;
@@ -25,9 +24,6 @@ public class ItemServiceImpl implements IItemService {
     public List<Kill> getKillItems() throws Exception {
         killMapper.updateCanKill();
         List<Kill> kills = killMapper.selectAll();
-//        PageHelper.startPage(1, 8);
-//        PageInfo<User>  p = new PageInfo<>(list);
-//        list=p.getList();
         return kills;
     }
 
@@ -38,8 +34,6 @@ public class ItemServiceImpl implements IItemService {
      */
     @Override
     public Kill getKilldetail(Integer id) throws Exception {
-//        Map<String ,String> map = null;
-//        killMapper.updateCanKill();
         Kill kill = killMapper.selectById(id);
         if (kill == null){
             throw new Exception("暂无此秒杀商品记录");

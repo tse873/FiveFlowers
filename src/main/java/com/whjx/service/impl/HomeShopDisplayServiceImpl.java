@@ -1,6 +1,8 @@
 package com.whjx.service.impl;
 
 import com.whjx.dao.HomeShopDisplayMapper;
+import com.whjx.pojo.Img;
+import com.whjx.pojo.PrimaryCategories;
 import com.whjx.pojo.Spu;
 import com.whjx.service.HomeShopDisplayService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,15 @@ public class HomeShopDisplayServiceImpl implements HomeShopDisplayService {
     @Override
     public List<Spu> selectAllRecommend() {
         return homeShopDisplayMapper.selectAllRecommend();
+    }
+
+    @Override
+    public List<PrimaryCategories> selectAll() {
+        return homeShopDisplayMapper.selectAll();
+    }
+
+    @Override
+    public List<Img> selectImg() {
+        return homeShopDisplayMapper.selectImg();
     }
 }

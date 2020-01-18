@@ -37,11 +37,10 @@ public class KillController {
         }
         BaseResponse response=new BaseResponse(StatusCode.Success);
         try {
-            Boolean res=killService.killItemV5(dto.getKillId(),dto.getUserId());
+            Boolean res=killService.killItemV5(dto.getKillId(),dto.getOpenId());
             if (!res){
                 return new BaseResponse(StatusCode.Fail.getCode(),"基于ZooKeeper的分布式锁进行控制-哈哈~商品已抢购完毕或者不在抢购时间段哦!");
             }
-
         }catch (Exception e){
             response=new BaseResponse(StatusCode.Fail.getCode(),e.getMessage());
         }

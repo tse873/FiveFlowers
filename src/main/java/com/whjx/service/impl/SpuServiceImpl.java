@@ -32,6 +32,7 @@ public class SpuServiceImpl implements ISpuService {
         s.setSpuSpecification(spu.getSpuSpecification());
         s.setSpuRecommend(spu.getSpuRecommend());
         s.setSpuImgUrl(spu.getSpuImgUrl());
+        s.setSpuInventory(spu.getSpuInventory());
         int i = sm.addSpu(s);
         if (i > 0) {
             return "添加成功";

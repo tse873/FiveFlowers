@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.whjx.dao.SecondMapper" >
+    <resultMap id="BaseResultMap" type="com.whjx.pojo.Spu">
+    <id property="id" column="id"/>
+    <result property="spuTitle" column="spu_title"/>
+    <result property="spuState" column="spu_state"/>
+    <result property="spuAddtime" column="spu_addtime"/>
+    <result property="spuSc" column="spu_sc"/>
+    <result property="spuDescribe" column="spu_describe"/>
+    <result property="spuSpecification" column="spu_specification"/>
+    <result property="spuRecommend" column="spu_recommend"/>
+    <result property="spuImgUrl" column="spu_img_url"/>
+    <result property="spuPrice" column="spu_price"/>
+    </resultMap>
+
+  <select id="selectSecond" resultMap="BaseResultMap" resultType="com.whjx.pojo.Spu">
+        SELECT
+a.id,
+a.spu_title,
+a.spu_state,
+a.spu_addtime,
+a.spu_sc,
+a.spu_describe,
+a.spu_specification,
+a.spu_recommend,
+a.spu_img_url,
+a.spu_price,
+b.sc_id,
+b.sc_img,
+b.sc_name,
+b.sc_pc
+FROM
+w_spu AS a ,
+w_second_categories AS b
+where a.spu_sc=b.sc_id
+AND b.sc_id=#{sc}
+AND a.spu_state=0
+  </select>
+
+</mapper>

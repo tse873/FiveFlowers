@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.StandardMapper">
+	<resultMap id="StandardResultMap" type="com.whjx.pojo.Spu" >
+		<id column="id" property="id"/>
+		<result column="spu_title" property="spuTitle"/>
+		<result column="spu_state" property="spuState"/>
+		<result column="spu_addtime" property="spuAddtime"/>
+		<result column="spu_sc" property="spuSc"/>
+		<result column="spu_describe" property="spuDescribe"/>
+		<result column="spu_specification" property="spuSpecification"/>
+		<result column="spu_recommend" property="spuRecommend"/>
+		<result column="spu_img_url" property="spuImgUrl"/>
+		<result column="spu_price" property="spuPrice"/>
+			<collection property="parameter" javaType="com.whjx.pojo.Parameter">
+				<id column="parameter_id" property="parameterId"/>
+				<result column="parameter_name" property="parameterName"/>
+				<result column="parameter_spuid" property="parameterSpuid"/>
+			</collection>
+	</resultMap>
+	<select id="standardById" resultMap="StandardResultMap">
+		SELECT
+		w_spu.id,
+		w_spu.spu_title,
+		w_spu.spu_state,
+		w_spu.spu_addtime,
+		w_spu.spu_sc,
+		w_spu.spu_describe,
+		w_spu.spu_specification,
+		w_spu.spu_recommend,
+		w_spu.spu_img_url,
+		w_spu.spu_price,
+		pa.parameter_id,
+		pa.parameter_name,
+		pa.parameter_spuid
+		FROM
+		w_spu ,
+		w_parameter AS pa
+		WHERE
+		w_spu.id = pa.parameter_spuid AND
+		w_spu.id = #{id}
+	</select>
+</mapper>

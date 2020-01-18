@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.SpuDetialMapper">
+    <resultMap id="BaseResultMap" type="com.whjx.pojo.Spu">
+            <id property="id" column="id"/>
+            <result property="spuTitle" column="spu_title"/>
+            <result property="spuState" column="spu_state"/>
+            <result property="spuSc" column="spu_sc"/>
+            <result property="spuPrice" column="spu_price"/>
+            <result property="spuDescribe" column="spu_describe"/>
+            <result property="spuSpecification" column="spu_specification"/>
+            <result property="spuRecommend" column="spu_recommend"/>
+            <result property="spuImgUrl" column="spu_img_url"/>
+            <collection  property="imgs" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Img">
+                <id property="imgId" column="img_id"/>
+                <result property="imgUrl" column="img_url"/>
+                <result property="main" column="img_main"/>
+                <result property="imgSort" column="img_sort"/>
+                <result property="imgSpuId" column="img_spu_id"/>
+            </collection >
+    </resultMap>
+
+    <!--  获取商品详细信息的查询-->
+    <select id="selectById" resultType="com.whjx.pojo.Spu" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        SELECT
+          a.id,
+          a.spu_title,
+          a.spu_state,
+          a.spu_sc,
+          a.spu_price,
+          a.spu_img_url,
+          a.spu_describe,
+          a.spu_specification,
+          a.spu_recommend,
+          b.img_url,
+          b.img_sort,
+          b.img_main,
+          b.img_spu_id
+        FROM w_spu AS a LEFT JOIN w_img AS b ON a.id = b.img_spu_id
+        WHERE a.id = #{id}
+     </select>
+</mapper>

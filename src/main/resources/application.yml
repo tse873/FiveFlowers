@@ -47,6 +47,6 @@ spring:
     name: solr
   data:
     solr:
-      host: http://localhost:8080/solr
+      host: http://60.205.230.246:8080/solr
 server:
   port: 8081

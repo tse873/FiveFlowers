@@ -1,3 +1,4 @@
+/*
 package com.whjx.config;
 
 import com.whjx.interceptor.AuthenticationInterceptor;
@@ -109,4 +110,4 @@ public class InterceptorConfig implements WebMvcConfigurer {
 		// TODO Auto-generated method stub
 		return null;
 	}
-}
+}*/

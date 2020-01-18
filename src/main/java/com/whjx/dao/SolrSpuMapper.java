@@ -8,6 +8,6 @@ import java.util.List;
 
 @Repository("ssm")
 public interface SolrSpuMapper {
-    List<Spu> find();
+    List<Spu> find(Spu spu);
 
 }

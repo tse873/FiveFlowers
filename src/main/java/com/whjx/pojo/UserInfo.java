@@ -3,6 +3,7 @@ import lombok.Data;
 
 @Data
 public class UserInfo {
+    private int userId;
     private String openid;
     private String nickName;
     private String avatarUrl;

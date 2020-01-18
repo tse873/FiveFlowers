@@ -1,12 +1,11 @@
 package com.whjx.pojo;
 
 import lombok.Data;
-import java.util.List;
 
 @Data
 public class ShopCart {
-    private Integer shopcartUserId;
-    private Integer shopcartSkuId;
+    private String shopcartOpenId;
+    private Integer shopcartSpuId;
     private Integer shopcartNumber;
-    private List<Sku> skuList;
+    private Spu spu;
 }

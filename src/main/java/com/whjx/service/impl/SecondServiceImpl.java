@@ -1,27 +1,21 @@
 package com.whjx.service.impl;
 
 
-import com.whjx.dao.ISecondMapper;
-import com.whjx.pojo.SecondCategories;
-
-import com.whjx.service.ISecondService;
+import com.whjx.dao.SecondMapper;
+import com.whjx.pojo.Spu;
+import com.whjx.service.SecondService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("ssi")
-public class SecondServiceImpl implements ISecondService {
+@Service
+public class SecondServiceImpl implements SecondService {
     @Autowired
-    private ISecondMapper isd;
-
-    public void setIsd(ISecondMapper isd) {
-        this.isd = isd;
-    }
-
-
+    private SecondMapper sm;
     @Override
-    public List<SecondCategories> selectSecondShow(int scId) {
-        return isd.selectSecondShow(scId);
+    public List<Spu> selectSecond(int spuSc) {
+
+        return sm.selectSecond(spuSc);
     }
 }

@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="FiveFlowers:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>FiveFlowers</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="OneProject.war">
+      <element id="artifact" artifact-name="FiveFlowers:war exploded" />
+    </root>
+  </artifact>
+</component>

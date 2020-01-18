@@ -9,7 +9,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * 待秒杀商品controller
@@ -52,15 +51,14 @@ public class ItemController {
      * @return
      */
     @CrossOrigin
-    @GetMapping(value = "/detail/{id}")
-    public String detail(@PathVariable Integer id){
+    @GetMapping(value = "/detail")
+    public String detail(@RequestParam Integer id){
         String shopdetail;
         if (id == 0 || id < 0){
             return "error";
         }
         try {
             Kill killdetail = itemService.getKilldetail(id);
-//            Map<String, String> killdetailJson = itemService.getKilldetail(id);
             ObjectMapper objectMapper = new ObjectMapper();
             shopdetail = objectMapper.writeValueAsString(killdetail);
         }catch (Exception e){

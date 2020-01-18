@@ -2,7 +2,7 @@ package com.whjx.service.impl;
 
 import com.whjx.dao.UserCartMapper;
 import com.whjx.pojo.ShopCart;
-import com.whjx.pojo.Sku;
+import com.whjx.pojo.Spu;
 import com.whjx.service.UserCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,33 +14,35 @@ public class UserCartServiceImpl implements UserCartService {
     private UserCartMapper userCartMapper;
 
     @Override
-    public List<ShopCart> selectAll(int userid) {
-        return userCartMapper.selectAll(userid);
+    public List<ShopCart> selectAll(String openId) {
+        return userCartMapper.selectAll(openId);
     }
 
     @Override
     public String addToCart(ShopCart shopcart) {
         String res = "";
-        List<ShopCart> shopcarts = this.selectAll(shopcart.getShopcartUserId());
-        if(shopcarts.size() != 0) {
-            for (ShopCart shopCart : shopcarts) {
-                int kucun = 0;
-                for (Sku skuList:shopCart.getSkuList()) {
-                    kucun = skuList.getSkuInventory();
-                }
-                if(kucun < (shopcart.getShopcartNumber()+1)) {
-                    res = "数量超出范围了";
-                } else if(shopcart.getShopcartNumber()+shopCart.getShopcartNumber() > kucun ){
-                        res = "商品加购件数(含已加购件数)已超过库存";
-                } else {
+        if(userCartMapper.selectAll(shopcart.getShopcartOpenId()).size() != 0) {
+            for (ShopCart shopCart : userCartMapper.selectAll(shopcart.getShopcartOpenId())) {
+                if(shopCart.getShopcartSpuId() == shopcart.getShopcartSpuId() & userCartMapper.findSpuById(shopcart.getShopcartSpuId()).getSpuInventory() < shopcart.getShopcartNumber()) {
+                    res = "数量超出库存了";
+                } else if(shopCart.getShopcartSpuId() == shopcart.getShopcartSpuId() & (shopcart.getShopcartNumber() + shopCart.getShopcartNumber()) > userCartMapper.findSpuById(shopcart.getShopcartSpuId()).getSpuInventory()){
+                    res = "商品加购件数(含已加购件数)已超过库存";
+                } else if(shopCart.getShopcartSpuId() == shopcart.getShopcartSpuId()){
                     shopcart.setShopcartNumber(shopcart.getShopcartNumber() + shopCart.getShopcartNumber());
-                    this.deleteShop(shopCart.getShopcartUserId(), shopCart.getShopcartSkuId());
+                    userCartMapper.deleteShop(shopCart.getShopcartOpenId(), shopCart.getShopcartSpuId());
                     res = String.valueOf(userCartMapper.addToCart(shopcart));
+                } else {
+                    if(userCartMapper.findSpuById(shopcart.getShopcartSpuId()).getSpuInventory() < shopcart.getShopcartNumber()){
+                        res = "数量超出范围了";
+                    }else{
+                        userCartMapper.deleteShop(shopcart.getShopcartOpenId(), shopcart.getShopcartSpuId());
+                        res = String.valueOf(userCartMapper.addToCart(shopcart));
+                    }
                 }
             }
-        } else {
-            Sku sku = userCartMapper.findSkuById(shopcart.getShopcartSkuId());
-            if(sku.getSkuInventory() < (shopcart.getShopcartNumber() + 1)){
+        }else {
+            Spu spu = userCartMapper.findSpuById(shopcart.getShopcartSpuId());
+            if(spu != null && spu.getSpuInventory() < (shopcart.getShopcartNumber())){
                 res = "数量超出范围了";
             }else{
                 res = String.valueOf(userCartMapper.addToCart(shopcart));
@@ -50,37 +52,36 @@ public class UserCartServiceImpl implements UserCartService {
     }
 
     @Override
-    public String updateCart ( int userId, int skuId, int num){
-        int kucun = 0;
-        for (ShopCart shopCart : this.selectAll(userId)) {
-            for (Sku sku : shopCart.getSkuList()) {
-                kucun = sku.getSkuInventory();
+    public String updateCart (ShopCart shopcart){
+        String res = "";
+        List<ShopCart> shopCarts = userCartMapper.selectAll(shopcart.getShopcartOpenId());
+        if(shopCarts != null) {
+            for (ShopCart shopCart : shopCarts) {
+                if (shopcart.getShopcartNumber() < 1) {
+                    res = "数量不能少于1件";
+                } else if (shopcart.getShopcartNumber() > shopCart.getSpu().getSpuInventory()) {
+                    res = "数量超出范围";
+                } else {
+                    int count = userCartMapper.updateCart(shopcart);
+                    if (count == 0) {
+                        res = "修改失败";
+                    } else {
+                        res = "修改成功";
+                    }
+                }
             }
         }
-        if (num < 1) {
-            return "数量不能少于1件";
-        } else if (num > kucun) {
-            return "数量超出范围";
-        } else {
-            int count = userCartMapper.updateCart(userId, skuId, num);
-            if (count == 0) {
-                return "修改失败";
-            } else {
-                return "修改成功";
-            }
-        }
+        return res;
     }
 
     @Override
-    public int deleteShop (int userId, int skuId){
-        int skuid = 0;
-        for (ShopCart shopCart : this.selectAll(userId)) {
-            skuid = shopCart.getShopcartSkuId();
+    public int deleteShop (String openId, int spuId){
+       int count = 0;
+        for (ShopCart res: userCartMapper.selectAll(openId)){
+            if(res.getShopcartSpuId() == spuId) {
+                count = userCartMapper.deleteShop(openId,spuId);
+            }
         }
-        if (skuid != skuId) {
-            return 0;
-        } else {
-            return userCartMapper.deleteShop(userId, skuId);
-        }
+        return count;
     }
 }

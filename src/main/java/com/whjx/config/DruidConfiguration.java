@@ -1,3 +1,4 @@
+/*
 package com.whjx.config;
 
 import com.alibaba.druid.support.http.StatViewServlet;
@@ -35,4 +36,4 @@ public class DruidConfiguration {
         filterRegistrationBean.addInitParameter("exclusions","*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         return filterRegistrationBean;
     }
-}
+}*/

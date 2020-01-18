@@ -18,23 +18,9 @@ public class AesCbcUtil {
     static {
         Security.addProvider(new BouncyCastleProvider());
     }
-
-    /**
-     * AES解密
-     *
-     * @param data           //密文，被加密的数据
-     * @param key            //秘钥
-     * @param iv             //偏移量
-     * @param encodingFormat //解密后的结果需要进行的编码
-     * @return
-     * @throws Exception
-     */
     public static String decrypt(String data, String key, String iv, String encodingFormat) throws Exception {
-        //被加密的数据
         byte[] dataByte = Base64.decodeBase64(data.getBytes());
-        //加密秘钥
         byte[] keyByte = Base64.decodeBase64(key.getBytes());
-        //偏移量
         byte[] ivByte = Base64.decodeBase64(iv.getBytes());
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");

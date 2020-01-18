@@ -4,8 +4,8 @@ import com.whjx.pojo.ShopCart;
 import java.util.List;
 
 public interface UserCartService {
-    List<ShopCart> selectAll(int userid);
+    List<ShopCart> selectAll(String openId);
     String addToCart(ShopCart shopcart);
-    String updateCart(int userId, int skuId, int num);
-    int deleteShop(int userId, int skuId);
+    String updateCart(ShopCart shopCart);
+    int deleteShop(String openId, int spuId);
 }

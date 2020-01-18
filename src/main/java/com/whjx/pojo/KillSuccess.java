@@ -1,10 +1,7 @@
 package com.whjx.pojo;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.ToString;
 
-import java.sql.Time;
 import java.util.Date;
 
 
@@ -12,7 +9,7 @@ import java.util.Date;
 public class KillSuccess {
     private Integer successId;
     private String killCode;
-    private Integer userId;
+    private String openId;
     private Integer killId;
     private Integer killStatus;
     private Date creatTime;

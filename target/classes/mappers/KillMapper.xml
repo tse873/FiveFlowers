@@ -23,6 +23,7 @@
 
       <collection  property="imgs" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Img">
         <id property="imgId" column="img_id"/>
+        <result property="imgDescribe" column="img_describe"/>
         <result property="imgUrl" column="img_url"/>
         <result property="main" column="img_main"/>
         <result property="imgSort" column="img_sort"/>
@@ -70,13 +71,12 @@
         FROM (w_kill AS a LEFT JOIN w_spu AS b ON b.id = a.kill_spuid) LEFT JOIN w_img AS img ON b.id = img.img_spu_id
         WHERE a.kill_isactive = 1 AND a.kill_spuid = #{killId} AND a.kill_count > 0
      </select>
-    <select id="selectByUserId" resultType="java.lang.Integer">
+    <select id="selectByOpenId" resultType="java.lang.Integer">
         SELECT
         COUNT(1)
     FROM
         w_user
     WHERE
-        user_id = #{userId}
+        openid = #{openId}
     </select>
-
 </mapper>

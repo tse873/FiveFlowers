@@ -5,7 +5,6 @@ import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
 
-import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -32,7 +31,10 @@ public class Spu {
     @Field("spu_img_url")
     private String spuImgUrl;
     @Field("spu_price")
-    private BigDecimal spuPrice;
+    private Double spuPrice;
+    @Field("spu_inventory")
+    private Integer spuInventory;
     private List<Img> imgs;
     private Sku sku;
+    private Parameter parameter;
 }

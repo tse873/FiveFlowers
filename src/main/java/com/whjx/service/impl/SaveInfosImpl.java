@@ -15,12 +15,12 @@ public class SaveInfosImpl implements ISaveInfoService {
 
     @Autowired
     private SaveInfoMapper sim;
-    String res = "";
 
     @Override
-    public String saveInfos(String code,String encryptedData, String iv) {
+    public UserInfo saveInfos(String code,String encryptedData, String iv) {
+        UserInfo u = null;
         if (code == null || code.length() == 0) {
-            res = "无code";
+            return u;
         }
         String wxspAppid = WeChatConfig.APPID;
         String wxspSecret = WeChatConfig.APP_SECRECT;
@@ -30,9 +30,9 @@ public class SaveInfosImpl implements ISaveInfoService {
         JSONObject json = JSONObject.fromObject(sr);
         String session_key = json.get("session_key").toString();
         String openid = (String) json.get("openid");
-        if (openid.equals(sim.selectUser(openid).getOpenid())){
-            res = "登录成功";
-        } else{
+        if (null != sim.selectUser(openid) && openid.equals(sim.selectUser(openid).getOpenid())){
+            return sim.selectUser(openid);
+        } else {
             try {
                 String result = AesCbcUtil.decrypt(encryptedData, session_key, iv, "UTF-8");
                 if (null != result && result.length() > 0) {
@@ -48,15 +48,15 @@ public class SaveInfosImpl implements ISaveInfoService {
                     userInfo.setLanguage(userInfoJSON.getString("language"));
                     int i = sim.saveInfo(userInfo);
                     if (i > 0){
-                        res = "success";
+                       return userInfo;
                     } else {
-                        res = "fail";
+                        return u;
                     }
                 }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-        return res;
+        return u;
     }
 }

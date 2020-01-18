@@ -14,14 +14,14 @@ import java.util.List;
 public class SolrSpuServiceImpl implements SolrSpuService {
     @Autowired
     private SolrSpuMapper ssm;
-    /*@Autowired
+    @Autowired(required = false)
     private SolrTemplate solrTemplate;
 
     @Override
-    public List<Spu> commitAll() {
-        List<Spu> spuList = ssm.find();
+    public List<Spu> commitAll(Spu spu) {
+        List<Spu> spuList = ssm.find(spu);
         solrTemplate.saveBeans("collection1",spuList);
         solrTemplate.commit("collection1");
         return spuList;
-    }*/
+    }
 }

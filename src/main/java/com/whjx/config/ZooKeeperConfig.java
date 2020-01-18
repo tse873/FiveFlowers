@@ -1,6 +1,5 @@
 package com.whjx.config;
 
-
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
 import org.apache.curator.retry.RetryNTimes;
@@ -30,7 +29,6 @@ public class ZooKeeperConfig {
         CuratorFramework curatorFramework=CuratorFrameworkFactory.builder()
                 .connectString(env.getProperty("zk.host"))
                 .namespace(env.getProperty("zk.namespace"))
-                //重试策略
                 .retryPolicy(new RetryNTimes(5,1000))
                 .build();
         curatorFramework.start();

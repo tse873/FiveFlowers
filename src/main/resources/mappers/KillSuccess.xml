@@ -5,7 +5,7 @@
     <resultMap id="BaseResultMap" type="com.whjx.pojo.KillSuccess">
         <id column="success_id" jdbcType="INTEGER" property="successId" />
         <result column="kill_code" jdbcType="INTEGER" property="killCode" />
-        <result column="user_id" jdbcType="TIMESTAMP" property="userId" />
+        <result column="open_id" jdbcType="VARCHAR" property="openId" />
         <result column="kill_id" jdbcType="TIMESTAMP" property="killId" />
         <result column="kill_status" jdbcType="INTEGER" property="killStatus" />
         <result column="creat_time" jdbcType="DECIMAL" property="creatTime" />
@@ -24,7 +24,7 @@
     <select id="selectByOrder" resultMap="BaseResultMap" resultType="com.whjx.pojo.KillSuccess">
         SELECT
             a.kill_code,
-            a.user_id,
+            a.open_id,
             a.kill_id,
             a.kill_status,
             a.creat_time,
@@ -33,7 +33,7 @@
             b.user_email,
             s.spu_title
         FROM
-            (w_kill_success as a left join w_user as b on a.user_id = b.user_id) LEFT JOIN w_spu AS s ON a.kill_spu_id = s.id
+            (w_kill_success as a left join w_user as b on a.open_id = b.openid) LEFT JOIN w_spu AS s ON a.kill_spu_id = s.id
         WHERE
             a.kill_code = #{orderNo}
     </select>
@@ -51,7 +51,7 @@
     FROM
         w_kill_success
     WHERE
-        user_id = #{userId}
+        open_id = #{openId}
     AND kill_id = #{killId}
 
     AND kill_status IN (0)

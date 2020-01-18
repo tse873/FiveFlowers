@@ -4,10 +4,7 @@ import lombok.Data;
 
 @Data
 public class Parameter {
-    private Integer parameterId;
-    private String parameterFirstname;
-    private String parameterSname;
-    private String parameterThirdname;
-    private String parameterFourname;
-    private Integer parameterSpecification;
+    private Integer parameterId;//主键id
+    private String parameterName;//参数名1
+    private Integer parameterSpuid;//规格id
 }
