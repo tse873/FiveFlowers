@@ -5,6 +5,7 @@ import com.whjx.pojo.Spu;
 import com.whjx.service.ISpuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 @Service
 public class SpuServiceImpl implements ISpuService {
@@ -17,6 +18,15 @@ public class SpuServiceImpl implements ISpuService {
             return "修改成功";
         }else {
             return "修改失败";
+        }
+    }
+
+    @Override
+    public String updateState(Integer spuId) {
+        if(sm.updateState(spuId) > 0){
+            return "商品已删除";
+        } else{
+            return "删除商品失败";
         }
     }
 

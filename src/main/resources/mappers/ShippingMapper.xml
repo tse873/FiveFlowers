@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.ShippingMapper">
+<resultMap id="BaseResultMap" type="com.whjx.pojo.Address">
+    <id column="ad_id" property="adId"/>
+    <result column="ad_province" property="adProvince"/>
+    <result column="ad_city" property="adCity"/>
+    <result column="ad_district" property="adDistrict"/>
+    <result column="ad_site" property="adSite"/>
+    <result column="ad_name" property="adName"/>
+    <result column="ad_tel" property="adTel"/>
+    <result column="ad_open_id" property="adOpenId"/>
+    <result column="ad_isdefault" property="adIsdefault"/>
+</resultMap>
+
+
+
+    <select id="selectAddress" resultType="com.whjx.pojo.Address" resultMap="BaseResultMap">
+        SELECT
+        a.user_id,
+        a.openid,
+        b.ad_id,
+        b.ad_province,
+        b.ad_city,
+        b.ad_district,
+        b.ad_site,
+        b.ad_name,
+        b.ad_tel,
+        b.ad_open_id,
+        b.ad_isdefault
+        FROM
+        w_user AS a ,
+        w_address AS b
+        where a.openid= b.ad_open_id
+        and a.openid = #{ui}
+    </select>
+
+
+
+
+</mapper>

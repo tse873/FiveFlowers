@@ -4,6 +4,7 @@ import com.whjx.pojo.Spu;
 import com.whjx.service.impl.SpuServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
@@ -17,6 +18,12 @@ public class SpuController {
     @PutMapping("updatespu")
     public String updateSpus(Spu spu){
         return ssi.updateSpu(spu);
+    }
+
+    @CrossOrigin
+    @RequestMapping("/updateState")
+    public String updateState(Integer spuId){
+        return ssi.updateState(spuId);
     }
 
     @CrossOrigin

@@ -13,6 +13,12 @@
         <result property="spuImgUrl" column="spu_img_url"/>
         <result property="spuInventory" column="spu_inventory"/>
     </resultMap>
+    <resultMap id="BaseResultMap1" type="com.whjx.pojo.SecondCategories">
+        <id column="sc_id" property="scId"/>
+        <result column="sc_img" property="scImg"/>
+        <result column="sc_name" property="scName"/>
+        <result column="sc_pc" property="scPc"/>
+    </resultMap>
     <update id="updateSpu" parameterType="com.whjx.pojo.Spu">
         update w_spu
         set spu_title = #{spu.spuTitle,jdbcType=VARCHAR},
@@ -25,6 +31,9 @@
             spu_specification = #{spu.spuSpecification,jdbcType=VARCHAR},
             spu_spu_inventory = #{spu.spuInventory}
     where id = #{spu.id}
+    </update>
+    <update id="updateState">
+        update w_spu set spu_state = 1 where id = #{spuId}
     </update>
     <insert id="addSpu" parameterType="com.whjx.pojo.Spu">
         insert into w_spu values (#{spu.id},#{spu.spuTitle},#{spu.spuState},#{spu.spuAddtime},#{spu.spuSc},#{spu.spuDescribe},#{spu.spuSpecification},#{spu.spuRecommend},#{spu.spuImgUrl},#{spu.spuInventory)

@@ -5,13 +5,13 @@ import lombok.Data;
 @Data
 public class Address {
     private Integer adId;
-    private Integer adProvince;
-    private Integer adCity;
-    private Integer adDistrict;
+    private String adProvince;
+    private String adCity;
+    private String adDistrict;
     private String adSite;
     private String adName;
     private String adTel;
-    private Integer adUserId;
+    private String adOpenId;
     private Integer adIsdefault;
 
 }
