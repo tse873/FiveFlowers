@@ -1,6 +1,5 @@
-package com.whjx.service;
+package com.whjx.service.impl;
 
-import com.whjx.dao.KillMapper;
 import com.whjx.dao.KillSuccessMapper;
 import com.whjx.pojo.KillSuccess;
 import org.apache.commons.lang3.StringUtils;
@@ -56,8 +55,6 @@ public class RabbitmqSenderService {
                         @Override
                         public Message postProcessMessage(Message message) throws AmqpException {
                             MessageProperties messageProperties=message.getMessageProperties();
-//                            System.out.println(message);
-//                            System.out.println(messageProperties);
                             messageProperties.setDeliveryMode(MessageDeliveryMode.PERSISTENT);
                             messageProperties.setHeader(AbstractJavaTypeMapper.DEFAULT_CONTENT_CLASSID_FIELD_NAME,KillSuccess.class);
                             return message;

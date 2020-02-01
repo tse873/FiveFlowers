@@ -1,4 +1,4 @@
-package com.whjx.service;
+package com.whjx.service.impl;
 
 import com.whjx.dao.KillSuccessMapper;
 import com.whjx.dto.MailDto;

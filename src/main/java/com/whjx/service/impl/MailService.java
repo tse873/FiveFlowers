@@ -1,7 +1,6 @@
-package com.whjx.service;
+package com.whjx.service.impl;
 
 import com.whjx.dto.MailDto;
-import com.whjx.pojo.KillSuccess;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import javax.mail.internet.MimeMessage;
 @Service
 public class MailService {
     private final static Logger log = LoggerFactory.getLogger(MailService.class);

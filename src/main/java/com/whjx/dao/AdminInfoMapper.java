@@ -3,9 +3,7 @@ package com.whjx.dao;
 import com.whjx.pojo.AdminInfo;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
-/**
-*田双娥
-*/
+
 @Repository("AdminInfoMapper")
 public interface AdminInfoMapper {
     AdminInfo adminLogin (@Param("username") String username, @Param("password") String password);

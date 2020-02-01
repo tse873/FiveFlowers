@@ -9,7 +9,7 @@
     <result column="kill_end" jdbcType="TIMESTAMP" property="killEnd" />
     <result column="kill_spuid" jdbcType="INTEGER" property="killSpuid" />
     <result column="kill_price" jdbcType="DECIMAL" property="killPrice" />
-      <result column="can_kill" jdbcType="INTEGER" property="canKill" />
+    <result column="can_kill" jdbcType="INTEGER" property="canKill" />
     <result column="kill_isactive" jdbcType="VARCHAR" property="killIsactive" />
     <association property="spu" javaType="com.whjx.pojo.Spu">
       <id property="id" column="id"/>

@@ -7,7 +7,6 @@ import com.whjx.enums.SysConstant;
 import com.whjx.pojo.Kill;
 import com.whjx.pojo.KillSuccess;
 import com.whjx.service.IKillService;
-import com.whjx.service.RabbitmqSenderService;
 import com.whjx.util.SnowFlake;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.recipes.locks.InterProcessMutex;
@@ -16,14 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
-
-//import org.redisson.api.RLock;
-//import org.redisson.api.RedissonClient;
-
 /**
  * @Author:debug (SteadyJack)
  * @Date: 2019/6/17 22:21
