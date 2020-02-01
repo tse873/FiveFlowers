@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.ShopCartCountMapper">
+<!--    <resultMap id="BaseResultMap" type="com.whjx.pojo.Spu">-->
+<!--            <id property="id" column="id"/>-->
+<!--            <result property="spuPrice" column="spu_price"/>-->
+<!--    </resultMap>-->
+
+    <!--  查询商品价格-->
+    <select id="selectMoneyByShopId" resultType="java.lang.Double"  parameterType="java.lang.Integer">
+        SELECT
+          spu_price
+        FROM w_spu
+        WHERE id = #{shopId}
+     </select>
+    <!--  查询商品id-->
+    <select id="selectSpuId" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT
+        shopcart_spu_id
+        FROM w_shopcart
+        WHERE shopcart_openid=#{openId}
+    </select>
+    <!--  查询商品数量-->
+    <select id="selectCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        SELECT
+        shopcart_number
+        FROM w_shopcart
+        WHERE shopcart_spu_id=#{spuId}
+    </select>
+</mapper>

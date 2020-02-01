@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.SaveInfoMapper">
+    <resultMap id="BaseResultMap" type="com.whjx.pojo.UserInfo">
+        <id property="userId" column="user_id"/>
+        <result property="openid" column="openid"/>
+        <result property="nickName" column="nickName"/>
+        <result property="avatarUrl" column="avatar_url"/>
+        <result property="gender" column="gender"/>
+        <result property="country" column="country"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="language" column="language"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <insert id="saveInfo" parameterType="com.whjx.pojo.UserInfo">
+        insert into w_user(openid,nickName,avatar_url,gender,country,province,city,language) values(#{ui.openid},#{ui.nickName},#{ui.avatarUrl},#{ui.gender},#{ui.country},#{ui.province},#{ui.city},#{ui.language})
+    </insert>
+    <select id="selectUser" parameterType="java.lang.String" resultType="com.whjx.pojo.UserInfo" resultMap="BaseResultMap">
+        select * from w_user where openid = #{openid}
+    </select>
+</mapper>

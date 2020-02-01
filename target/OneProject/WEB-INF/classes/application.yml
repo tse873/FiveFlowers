@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    username: root
+    password: 1qaz!QAZ
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://60.205.230.246:3306/fiveflowers?serverTimezone=UTC
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-Size: 5
+      min-Idle: 5
+      max-Active: 20
+      maxWait: 60000
+      time-Between-Eviction-Runs-Millis: 60000
+      min-Evictable-Idle-Time-Millis: 300000
+      validation-Query: SELECT 1
+      test-While-Idle: true
+      test-On-Borrow: false
+      test-On-Return: false
+      pool-Prepared-Statements: true
+      exception-sorter: true
+      filters: stat,wall
+      maxPoolPreparedStatementPerConnectionSize: 20
+      useGlobalDataSourceStat: true
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+  pagehelper:
+    helper-dialect: mysql
+    reasonable: true
+    support-methods-arguments: true
+    params: count=countSql
+
+  redis:
+    host: 60.205.230.246
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 8
+    database: 4
+
+mybatis:
+  mapper-locations: classpath:mappers/**.xml
+
+---
+spring:
+  application:
+    name: solr
+  data:
+    solr:
+      host: http://60.205.230.246:8080/solr
+server:
+  port: 8081

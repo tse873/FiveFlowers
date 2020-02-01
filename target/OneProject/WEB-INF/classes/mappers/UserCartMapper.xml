@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.UserCartMapper">
+	<resultMap id="BaseResultMap" type="com.whjx.pojo.ShopCart">
+		<result property="shopcartOpenId" column="shopcart_openid"/>
+		<result property="shopcartSpuId" column="shopcart_spu_id"/>
+		<result property="shopcartNumber" column="shopcart_number"/>
+		<collection property="spu"  javaType="com.whjx.pojo.Spu">
+				<id property="id" column="id"/>
+				<result property="spuTitle" column="spu_title"/>
+				<result property="spuState" column="spu_state"/>
+				<result property="spuSc" column="spu_sc"/>
+				<result property="spuPrice" column="spu_price"/>
+				<result property="spuDescribe" column="spu_describe"/>
+				<result property="spuSpecification" column="spu_specification"/>
+				<result property="spuRecommend" column="spu_recommend"/>
+				<result property="spuImgUrl" column="spu_img_url"/>
+				<result property="spuInventory" column="spu_inventory"/>
+		</collection>
+	</resultMap>
+	<resultMap id="BaseResultMap1" type="com.whjx.pojo.Spu">
+		<id property="id" column="id"/>
+		<result property="spuTitle" column="spu_title"/>
+		<result property="spuState" column="spu_state"/>
+		<result property="spuSc" column="spu_sc"/>
+		<result property="spuPrice" column="spu_price"/>
+		<result property="spuDescribe" column="spu_describe"/>
+		<result property="spuSpecification" column="spu_specification"/>
+		<result property="spuRecommend" column="spu_recommend"/>
+		<result property="spuImgUrl" column="spu_img_url"/>
+		<result property="spuInventory" column="spu_inventory"/>
+	</resultMap>
+    <select id="selectAll" resultType="com.whjx.pojo.ShopCart" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+		a.shopcart_openid,
+		a.shopcart_spu_id,
+		a.shopcart_number,
+		c.id,
+		c.spu_title,
+		c.spu_state,
+		c.spu_addtime,
+		c.spu_img_url,
+		c.spu_price,
+		c.spu_describe,
+		c.spu_inventory
+		FROM
+		w_shopcart AS a
+		LEFT JOIN w_user AS b ON a.shopcart_openid = b.openid
+		LEFT JOIN w_spu AS c ON a.shopcart_spu_id = c.id
+		WHERE a.shopcart_openid = #{id}
+	</select>
+	<insert id="addToCart" parameterType="com.whjx.pojo.ShopCart">
+		insert into w_shopcart values (#{sc.shopcartOpenId},#{sc.shopcartSpuId},#{sc.shopcartNumber})
+	</insert>
+	<update id="updateCart">
+		update w_shopcart set shopcart_number = #{shopcart.shopcartNumber} where shopcart_openid = #{shopcart.shopcartOpenId} and shopcart_spu_id = #{shopcart.shopcartSpuId}
+	</update>
+	<delete id="deleteShop">
+		delete from w_shopcart where shopcart_openid = #{openid} and shopcart_spu_id = #{spuid}
+	</delete>
+	<select id="findSpuById" resultType="com.whjx.pojo.Spu" parameterType="int" resultMap="BaseResultMap1">
+		select * from w_spu where id = #{pid}
+	</select>
+</mapper>

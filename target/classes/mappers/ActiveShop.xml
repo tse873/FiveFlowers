@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.ActiveShopMapper">
+  <resultMap id="BaseResultMap" type="com.whjx.pojo.Kill">
+    <id column="kill_id" jdbcType="INTEGER" property="killId" />
+    <result column="kill_count" jdbcType="INTEGER" property="killCount" />
+    <result column="kill_start" jdbcType="TIMESTAMP" property="killStart" />
+    <result column="kill_end" jdbcType="TIMESTAMP" property="killEnd" />
+    <result column="kill_spuid" jdbcType="INTEGER" property="killSpuid" />
+    <result column="kill_price" jdbcType="DECIMAL" property="killPrice" />
+    <result column="can_kill" jdbcType="INTEGER" property="canKill" />
+    <result column="kill_isactive" jdbcType="VARCHAR" property="killIsactive" />
+    <association property="spu" javaType="com.whjx.pojo.Spu">
+      <id property="id" column="id"/>
+      <result property="spuTitle" column="spu_title"/>
+      <result property="spuState" column="spu_state"/>
+      <result property="spuSc" column="spu_sc"/>
+      <result property="spuDescribe" column="spu_describe"/>
+      <result property="spuSpecification" column="spu_specification"/>
+      <result property="spuRecommend" column="spu_recommend"/>
+      <result property="spuImgUrl" column="spu_img_url"/>
+      <collection  property="imgs" javaType="java.util.ArrayList" ofType="com.whjx.pojo.Img">
+        <id property="imgId" column="img_id"/>
+        <result property="imgDescribe" column="img_describe"/>
+        <result property="imgUrl" column="img_url"/>
+        <result property="main" column="img_main"/>
+        <result property="imgSort" column="img_sort"/>
+        <result property="imgSpuId" column="img_spu_id"/>
+      </collection >
+    </association>
+  </resultMap>
+<!--  获取商品列表查询-->
+      <select id="selectAll" resultMap="BaseResultMap" resultType="com.whjx.pojo.Kill">
+     SELECT
+          a.kill_id,
+          a.kill_count,
+          a.kill_spuid,
+          a.kill_price,
+          a.kill_isactive,
+          a.kill_start,
+          a.kill_end,
+          a.can_kill,
+          b.id,
+          b.spu_title,
+          b.spu_state,
+          b.spu_describe,
+          b.spu_img_url
+        FROM w_kill AS a LEFT JOIN w_spu AS b ON b.id = a.kill_spuid
+
+      </select>
+    <insert id="insertKill" parameterType="com.whjx.pojo.Kill">
+       insert into w_kill values (null,#{kill.killCount},#{kill.killStart},#{kill.killEnd},#{kill.killSpuid},#{kill.killPrice},#{kill.killIsactive},0)
+    </insert>
+    <update id="updSpu" parameterType="com.whjx.pojo.Kill">
+		update w_kill set kill_price = #{kill.killPrice},kill_count = #{kill.killCount},kill_start = #{kill.killStart},kill_end = #{kill.killEnd} where kill_id = #{kill.killId}
+	</update>
+    <delete id="delSpu" parameterType="java.lang.Integer">
+		delete from w_kill where kill_id = #{killId}
+	</delete>
+</mapper>
