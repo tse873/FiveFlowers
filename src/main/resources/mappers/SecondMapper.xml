@@ -16,26 +16,26 @@
 
   <select id="selectSecond" resultMap="BaseResultMap" resultType="com.whjx.pojo.Spu">
         SELECT
-a.id,
-a.spu_title,
-a.spu_state,
-a.spu_addtime,
-a.spu_sc,
-a.spu_describe,
-a.spu_specification,
-a.spu_recommend,
-a.spu_img_url,
-a.spu_price,
-b.sc_id,
-b.sc_img,
-b.sc_name,
-b.sc_pc
-FROM
-w_spu AS a ,
-w_second_categories AS b
-where a.spu_sc=b.sc_id
-AND b.sc_id=#{sc}
-AND a.spu_state=0
+        a.id,
+        a.spu_title,
+        a.spu_state,
+        a.spu_addtime,
+        a.spu_sc,
+        a.spu_describe,
+        a.spu_specification,
+        a.spu_recommend,
+        a.spu_img_url,
+        a.spu_price,
+        b.sc_id,
+        b.sc_img,
+        b.sc_name,
+        b.sc_pc
+        FROM
+        w_spu AS a ,
+        w_second_categories AS b
+        where a.spu_sc=b.sc_id
+        AND b.sc_id=#{sc}
+        AND a.spu_state=0
   </select>
 
 </mapper>
