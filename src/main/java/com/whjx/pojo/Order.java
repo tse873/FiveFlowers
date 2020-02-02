@@ -1,10 +1,10 @@
 package com.whjx.pojo;
 
 import lombok.Data;
-
 import javax.persistence.Table;
 import java.math.BigDecimal;
 import java.util.Date;
+
 @Data
 @Table(name = "w_order")
 public class Order {
@@ -26,4 +26,5 @@ public class Order {
     private String buyerNick;//买家昵称
     private Integer buyerRate;//买家是否已评论 0,未评论/1，已评论
     private Integer DiffTime;
+    private OrderInfo orderInfo;
 }

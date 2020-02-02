@@ -1,8 +1,8 @@
 package com.whjx.pojo;
 
 import lombok.Data;
-
 import javax.persistence.Table;
+
 @Data
 @Table(name = "w_orderinfo")
 public class OrderInfo {

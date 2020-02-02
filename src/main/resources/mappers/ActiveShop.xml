@@ -30,7 +30,7 @@
     </association>
   </resultMap>
 <!--  获取商品列表查询-->
-      <select id="selectAll" resultMap="BaseResultMap" resultType="com.whjx.pojo.Kill">
+  <select id="selectAll" resultMap="BaseResultMap" resultType="com.whjx.pojo.Kill">
      SELECT
           a.kill_id,
           a.kill_count,
@@ -46,15 +46,14 @@
           b.spu_describe,
           b.spu_img_url
         FROM w_kill AS a LEFT JOIN w_spu AS b ON b.id = a.kill_spuid
-
-      </select>
+  </select>
     <insert id="insertKill" parameterType="com.whjx.pojo.Kill">
        insert into w_kill values (null,#{kill.killCount},#{kill.killStart},#{kill.killEnd},#{kill.killSpuid},#{kill.killPrice},#{kill.killIsactive},0)
     </insert>
     <update id="updSpu" parameterType="com.whjx.pojo.Kill">
-		update w_kill set kill_price = #{kill.killPrice},kill_count = #{kill.killCount},kill_start = #{kill.killStart},kill_end = #{kill.killEnd} where kill_id = #{kill.killId}
-	</update>
+        update w_kill set kill_price = #{Kill.killPrice},kill_count = #{Kill.killCount},kill_start = #{Kill.killStart},kill_end= #{Kill.killEnd} where kill_id = #{Kill.killId}
+    </update>
     <delete id="delSpu" parameterType="java.lang.Integer">
-		delete from w_kill where kill_id = #{killId}
-	</delete>
+        delete from w_kill where kill_id = #{killId}
+    </delete>
 </mapper>

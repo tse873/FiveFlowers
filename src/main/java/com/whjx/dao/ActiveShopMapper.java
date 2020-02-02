@@ -9,6 +9,6 @@ import java.util.List;
 public interface ActiveShopMapper {
     List<Kill> selectAll();
     int insertKill(@Param("kill") Kill kill);
-    int updSpu(@Param("kill") Kill kill);
+    int updSpu(@Param("Kill") Kill kill);
     int delSpu(@Param("killId") int killId);
 }

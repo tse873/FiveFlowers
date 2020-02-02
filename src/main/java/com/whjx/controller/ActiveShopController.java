@@ -50,12 +50,18 @@ public class ActiveShopController {
     @CrossOrigin
     @RequestMapping(value = "/upaSpu",method = {RequestMethod.GET,RequestMethod.POST})
     public String updSpu(Kill kill){
-        int i = iActiveShopService.updSpu(kill);
-        if(i > 0){
-            return "操作成功";
-        }else{
-            return "操作异常";
+        String res = "";
+        try {
+            int i = iActiveShopService.updSpu(kill);
+            if(i > 0) {
+                res = "操作成功";
+            } else{
+                res = "操作异常";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+       return res;
     }
 
     @CrossOrigin
