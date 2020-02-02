@@ -16,7 +16,7 @@
 		<result column="close_time" jdbcType="TIMESTAMP" property="closeTime"/>
 		<result column="shipping_name" jdbcType="VARCHAR" property="shippingName"/>
 		<result column="shipping_code" jdbcType="VARCHAR" property="shippingCode"/>
-		<result column="open_id" jdbcType="VARCHAR" property="userId"/>
+		<result column="open_id" jdbcType="VARCHAR" property="openId"/>
 		<result column="buyer_message" jdbcType="VARCHAR" property="buyerMessage"/>
 		<result column="buyer_nick" jdbcType="VARCHAR" property="buyerNick"/>
 		<result column="buyer_rate" jdbcType="INTEGER" property="buyerRate"/>
