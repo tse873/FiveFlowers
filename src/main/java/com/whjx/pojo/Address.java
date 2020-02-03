@@ -13,5 +13,4 @@ public class Address {
     private String adTel;
     private String adOpenId;
     private Integer adIsdefault;
-
 }

@@ -4,7 +4,6 @@ import lombok.Data;
 import org.apache.solr.client.solrj.beans.Field;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.solr.core.mapping.SolrDocument;
-
 import java.util.Date;
 import java.util.List;
 

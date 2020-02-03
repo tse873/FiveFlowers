@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.StoreiInfomationMapper">
+    <resultMap id="BaseResultMap" type="com.whjx.pojo.Store">
+        <result column="store_name" property="storeName" />
+        <result column="store_logo" property="storeLogo" />
+        <result column="store_createtime" property="storeCreattie" />
+        <result column="store_introduction" property="storeIntroduction" />
+        <result column="store_address" property="storeAddress" />
+         <result column="store_phone" property="storePhone" />
+    </resultMap>
+    <select id="storeInfomation" resultType="com.whjx.pojo.Store" resultMap="BaseResultMap">
+        select * from w_store
+    </select>
+</mapper>

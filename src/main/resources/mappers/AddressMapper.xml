@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.AddressMapper">
+	<resultMap id="AddressResultMap" type="com.whjx.pojo.Address" >
+		<id column="ad_id" property="adId"/>
+		<result column="ad_province" property="adProvince"/>
+		<result column="ad_city" property="adCity"/>
+		<result column="ad_district" property="adDistrict"/>
+		<result column="ad_site" property="adSite"/>
+		<result column="ad_name" property="adName"/>
+		<result column="ad_tel" property="adTel"/>
+		<result column="ad_open_id" property="adOpenId"/>
+		<result column="ad_isdefault" property="adIsdefault"/>
+	</resultMap>
+    <update id="updateAddress" parameterType="com.whjx.pojo.Address">
+		UPDATE w_address
+			<trim prefix="set" suffixOverrides=",">
+				<if test="address.adProvince != null and address.adProvince != ''">
+					ad_province = #{address.adProvince},
+				</if>
+				<if test="address.adCity != null and address.adCity != ''">
+					ad_city = #{address.adCity},
+				</if>
+				<if test="address.adDistrict != null and address.adDistrict != ''">
+					ad_district = #{address.adDistrict},
+				</if>
+				<if test="address.adSite != null and address.adSite != ''">
+					ad_site = #{address.adSite},
+				</if>
+				<if test="address.adName != null and address.adName != ''">
+					ad_name = #{address.adName},
+				</if>
+				<if test="address.adTel != null and address.adTel != ''">
+					ad_tel = #{address.adTel},
+				</if>
+				<if test="address.adIsdefault != null and address.adIsdefault != ''">
+					ad_isdefault = #{address.adIsdefault},
+				</if>
+			</trim>
+		where ad_id = #{adId}
+		and ad_open_id = #{adOpenId}
+	</update>
+
+</mapper>
