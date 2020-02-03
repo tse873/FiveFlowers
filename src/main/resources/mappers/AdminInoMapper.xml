@@ -7,18 +7,26 @@
 		<result column="admin_name" property="adminName" jdbcType="VARCHAR" />
 		<result column="admin_password" property="adminPassword" jdbcType="VARCHAR" />
 		<result column="admin_telphone" property="adminTelphone" jdbcType="VARCHAR" />
-		<result column="admin_email" property="adminEmail" jdbcType="VARCHAR" />
 		<result column="admin_creat_time" property="adminCreatTime" jdbcType="DATE" />
 		<result column="admin_staus" property="adminStaus" jdbcType="INTEGER" />
 	</resultMap>
     <select id="adminLogin" resultType="com.whjx.pojo.AdminInfo" resultMap="BaseResultMap">
-		select admin_id,admin_name,admin_password,admin_telphone,admin_email,admin_creat_time,admin_staus
+		select admin_id,admin_name,admin_password,admin_telphone,admin_creat_time,admin_staus
 		from w_admininfo
 		where admin_name=#{username} and admin_password=#{password}
 	</select>
 	<select id="findAdminByName" resultType="com.whjx.pojo.AdminInfo" resultMap="BaseResultMap">
-        select admin_id,admin_name,admin_password,admin_telphone,admin_email,admin_creat_time,admin_staus
+        select admin_id,admin_name,admin_password,admin_telphone,admin_creat_time,admin_staus
 		from w_admininfo
       	where admin_name= #{username}
     </select>
+	<select id="selectAllAdmin" resultType="com.whjx.pojo.AdminInfo" resultMap="BaseResultMap">
+		 select admin_id,admin_name,admin_password,admin_telphone,admin_creat_time,admin_staus from w_admininfo
+	</select>
+	<insert id="addAdmin" parameterType="com.whjx.pojo.AdminInfo">
+		insert into w_admininfo values(0,#{adminInfo.adminName},#{adminInfo.adminPassword},#{adminInfo.adminTelphone},#{adminInfo.adminCreatTime},#{adminInfo.adminStaus})
+	</insert>
+	<update id="changeStaus">
+		update w_admininfo set admin_staus = #{staus} where admin_id = #{adminId}
+	</update>
 </mapper>

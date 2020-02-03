@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.whjx.dao.ShowUsersMapper">
+    <resultMap id="BaseResultMap" type="com.whjx.pojo.UserInfo">
+        <id property="userId" column="user_id"/>
+        <result property="openid" column="openid"/>
+        <result property="nickName" column="nickName"/>
+        <result property="avatarUrl" column="avatar_url"/>
+        <result property="gender" column="gender"/>
+        <result property="country" column="country"/>
+        <result property="province" column="province"/>
+        <result property="city" column="city"/>
+        <result property="language" column="language"/>
+        <result property="email" column="email"/>
+    </resultMap>
+    <select id="showUsers" resultType="com.whjx.pojo.UserInfo" resultMap="BaseResultMap">
+        select * from w_user
+    </select>
+</mapper>

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @RestController
 public class AdminInfoController {
@@ -32,5 +33,23 @@ public class AdminInfoController {
             response.addCookie(cookie);
             return jsonObject;
         }
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/allAdmin",method = {RequestMethod.POST,RequestMethod.GET})
+    public List<AdminInfo> selectAllAdmin(){
+        return adminInfoServiceImpl.selectAllAdmin();
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/addAdmin",method = {RequestMethod.POST})
+    public String addAdmin(@RequestBody AdminInfo adminInfo){
+        return adminInfoServiceImpl.addAdmin(adminInfo);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/changeStaus",method = {RequestMethod.POST})
+    public String changeStaus(int staus,int adminId){
+        return adminInfoServiceImpl.changeStaus(staus,adminId);
     }
 }

@@ -11,7 +11,6 @@ public class AdminInfo implements Serializable {
     private String adminName;
     private String adminPassword;
     private String adminTelphone;
-    private String adminEmail;
     private Date adminCreatTime;
     private Integer adminStaus;
 }
